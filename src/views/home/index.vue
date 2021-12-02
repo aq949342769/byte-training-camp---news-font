@@ -1,9 +1,12 @@
 <template>
-  <p>这是新闻首页</p>
+  <NewsText />
 </template>
 
 <script>
+import NewsText from "../../components/news/NewsText.vue"
 export default {
-  name: "News",
+  components:{
+    NewsText
+  }
 };
 </script>
