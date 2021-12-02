@@ -1,5 +1,5 @@
-import { Button, Icon  } from "vant";
-const components = [Button, Icon ];
+import { Button, Icon, Empty, Toast } from "vant";
+const components = [Button, Icon, Empty, Toast];
 
 export function vant(app) {
   components.forEach((component) => {

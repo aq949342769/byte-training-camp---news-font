@@ -8,8 +8,10 @@ import NewsDetail from "../views/news_detail/index.vue";
 import CommentDetail from "../views/comment_detail/index.vue";
 import My from "../views/my/index.vue";
 import Setting from "../views/setting/index.vue";
+import Notfind from "../views/notfind/index.vue";
 
 const routes = [
+  { path: "/:pathMatch(.*)", name: "404", component: Notfind },
   {
     path: "/",
     name: "home",
