@@ -1,5 +1,5 @@
 <template>
-  <p>这是新闻首页</p>
+  <p>个人中心</p>
 </template>
 
 <script>
