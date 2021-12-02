@@ -1,21 +1,12 @@
 <template>
-  <p @click="XXclick(type,page)">个人中心</p>
+  <NewsText />
 </template>
 
 <script>
-import { getNews } from "network/home";
+import NewsText from "../../components/news/NewsText.vue"
 export default {
-  name: "News",
-  methods:{
-    XXclick(type,page) {
-      getNews(type, page)
-        .then((res) => {
-          //业务代码
-        })
-        .catch((err) => {
-          //错误提示
-        });
-    },
+  components:{
+    NewsText
   }
 };
 </script>
