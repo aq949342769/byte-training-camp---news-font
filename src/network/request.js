@@ -1,10 +1,12 @@
 import axios from 'axios';
 
 export function request(config) {
+  const token = localStorage.getItem("token");
   // 1 创建实例
   const instance = axios.create({
-    baseURL: 'http://xxx.xxx.xxx',
-    timeout: 5000
+    baseURL: 'https://www.fastmock.site/mock/f22549d8e517e26fc838cac2e1d89ff7/api',
+    timeout: 5000,
+    headers: { 'Authorization': token }
   })
   // 2 拦截器
   // 请求拦截(前端给后端之前进行拦截)
@@ -15,7 +17,7 @@ export function request(config) {
   })
   // // 响应拦截（后端给前端之前进行拦截）
   instance.interceptors.response.use(res=>{
-    return res// 同样需要返回才能得到请求回来的数据
+    return res.data  // 同样需要返回才能得到请求回来的数据
   }),err=>{
     console.log(err);
   }
