@@ -7,9 +7,27 @@ import {
   NavBar,
   Tab,
   Tabs,
-  List,PullRefresh 
+  List,
+  PullRefresh,
+  Divider,
+  Tabbar,
+  TabbarItem,Field
 } from "vant";
-const components = [Button, Icon, Empty, Toast, Card, NavBar, Tab, Tabs, List,PullRefresh ];
+const components = [
+  Button,
+  Icon,
+  Empty,
+  Toast,
+  Card,
+  NavBar,
+  Tab,
+  Tabs,
+  List,
+  PullRefresh,
+  Divider,
+  Tabbar,
+  TabbarItem,Field
+];
 
 export function vant(app) {
   components.forEach((component) => {

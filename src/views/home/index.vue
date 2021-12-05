@@ -9,7 +9,7 @@
 <script>
 import NavBar from "./components/NavBar.vue";
 import Category from "./components/Category.vue";
-import Content from "./components/Content.vue";
+import Content from "../../components/news/index.vue";
 export default {
   components: {
     NavBar,
