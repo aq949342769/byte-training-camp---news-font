@@ -23,10 +23,10 @@
 
 <script>
 import { useStore } from "vuex";
-import NewsText from "../../../components/news/NewsText.vue";
-import NewsVideo from "../../../components/news/NewsVideo.vue";
-import NewsOnePic from "../../../components/news/NewsOnePic.vue";
-import NewsMorePic from "../../../components/news/NewsMorePic.vue";
+import NewsText from "./NewsText.vue";
+import NewsVideo from "./NewsVideo.vue";
+import NewsOnePic from "./NewsOnePic.vue";
+import NewsMorePic from "./NewsMorePic.vue";
 import { computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { Toast } from "vant";
