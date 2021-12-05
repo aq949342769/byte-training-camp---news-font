@@ -10,9 +10,6 @@ import {
   Slider,
   Popup,
   Field,
-  Uploader,
-  RadioGroup,
-  Radio,
   ActionSheet,
   Card,
   Tab,
@@ -20,7 +17,7 @@ import {
   List,
   PullRefresh
 } from "vant";
-const components = [Button, Icon, Empty, Toast, NavBar, Cell, CellGroup, Switch, Slider, Popup, Field, Uploader, RadioGroup, Radio, ActionSheet, Card, Tab, Tabs, List, PullRefresh];
+const components = [Button, Icon, Empty, Toast, NavBar, Cell, CellGroup, Switch, Slider, Popup, Field, ActionSheet, Card, Tab, Tabs, List, PullRefresh];
 
 
 export function vant(app) {

@@ -1,8 +1,6 @@
 export const user = {
-    state: () => ({}),
-    getters: {},
-    mutations: {},
-    actions: {},
-  };
-  
-  
+  state: () => ({}),
+  getters: {},
+  mutations: {},
+  actions: {},
+};
