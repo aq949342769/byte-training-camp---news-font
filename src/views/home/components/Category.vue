@@ -1,5 +1,5 @@
 <template>
-  <van-tabs v-model:active="active">
+  <van-tabs v-model:active="active" @click-tab="changeTab">
     <van-tab
       v-for="(newsCategory, index) in newsList"
       :title="newsCategory.name"
@@ -9,38 +9,62 @@
 </template>
 
 <script>
-import { onMounted, ref } from "vue";
-import { getNewsList, getLoveNewsList } from "../../../network/api/news";
+import { computed, onMounted, ref, watch } from "vue";
+import { useStore } from "vuex";
 
-// 网络请求
+// 获取分类列表
 const useHttpEffect = () => {
-  const newsList = ref([]);
-  const getList = () => {
-    getNewsList()
-      .then((res) => {
-        newsList.value = res.data;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const store = useStore();
+  const newsList = computed(() => store.state.news.newsCateList);
+  const getList = async () => {
+    store.dispatch("news/getCateList");
   };
-  const getLoveList = () => {
-    getLoveNewsList().then((res) => {
-      console.log(res);
-    });
+
+  return { newsList, getList };
+};
+
+// 判断该频道是否为喜爱的
+const useIsLoveEffect = () => {
+  const store = useStore();
+  const is_love = ref(false);
+  const getLoveList = async () => {
+    store.dispatch("news/getLoveCateList");
   };
-  return { newsList, getList, getLoveList };
+  const isLove = (active) => {
+    store.commit("news/changeLoveCate", active);
+  };
+  return { getLoveList, is_love, isLove };
+};
+
+// 切换tab页
+const useTabEffect = () => {
+  const store = useStore();
+  const active = ref(0);
+  const { isLove } = useIsLoveEffect();
+  watch(active, (newVal) => {
+    isLove(newVal);
+  });
+  const changeTab = (item) => {
+    if (item.name) {
+      store.dispatch("news/getOrdinaryNewsList",item.name);
+    } else {
+      store.dispatch("news/getRecommendNewsList");
+    }
+  };
+  return { active, changeTab };
 };
 
 export default {
   setup() {
-    const active = ref(0);
-    const { newsList, getList, getLoveList } = useHttpEffect();
+    const { newsList, getList } = useHttpEffect();
+    const { getLoveList, is_love, isLove } = useIsLoveEffect();
+    const { active, changeTab } = useTabEffect();
     onMounted(async () => {
       await getList();
       await getLoveList();
+      isLove(0, newsList);
     });
-    return { active, newsList };
+    return { active, newsList, is_love, changeTab };
   },
 };
 </script>

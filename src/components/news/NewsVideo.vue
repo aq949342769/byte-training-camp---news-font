@@ -1,11 +1,8 @@
 <template>
   <div class="card__wrap">
-    <div class="card__wrap__title van-multi-ellipsis--l2">
-      中央人民政府决定在澳门特别行政区维护国家安全委员会设立国家安全事务顾问和国家安全技术顾问
-      中央人民政府决定在澳门特别行政区维护国家安全委员会设立国家安全事务顾问和国家安全技术顾问
-    </div>
+    <div class="card__wrap__title van-multi-ellipsis--l2">{{ news.title }}</div>
     <div class="card__wrap__video">
-      <video src="../../assets/1.mp4" controls></video>
+      <!-- <video :src="news.media" controls></video> -->
     </div>
     <div class="card__wrap__subtitle">
       <div class="card__wrap__subtitle__item">新华社</div>
@@ -16,14 +13,16 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: ["news"],
+};
 </script>
 
 <style lang="less" scoped>
 .card__wrap {
-    padding: 20px;
+  padding: 20px;
   border-bottom: 1px solid #f2f2f2;
-  font-size: 12px;
+  font-size: 14px;
   &__video {
     width: 100%;
     text-align: center;

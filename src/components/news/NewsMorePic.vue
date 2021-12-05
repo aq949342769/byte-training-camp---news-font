@@ -1,18 +1,9 @@
 <template>
   <div class="card__wrap">
-    <div class="card__wrap__title van-multi-ellipsis--l2">
-      中央人民政府决定在澳门特别行政区维护国家安全委员会设立国家安全事务顾问和国家安全技术顾问
-      中央人民政府决定在澳门特别行政区维护国家安全委员会设立国家安全事务顾问和国家安全技术顾问
-    </div>
+    <div class="card__wrap__title van-multi-ellipsis--l2">{{news.title}}</div>
     <div class="card__wrap__img">
-      <div class="card__wrap__img__item">
-        <img src="../../assets/notfind.png" alt="" />
-      </div>
-      <div class="card__wrap__img__item">
-        <img src="../../assets/notfind.png" alt="" />
-      </div>
-      <div class="card__wrap__img__item">
-        <img src="../../assets/notfind.png" alt="" />
+      <div class="card__wrap__img__item" v-for="item in news.media" :key="item">
+        <img :src="item"/>
       </div>
     </div>
     <div class="card__wrap__subtitle">
@@ -24,21 +15,25 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props:['news']
+};
 </script>
 
 <style lang="less" scoped>
 .card__wrap {
   padding: 20px;
   border-bottom: 1px solid #f2f2f2;
-  font-size: 12px;
+  font-size: 14px;
   &__img {
     display: flex;
+    padding-top: 10px;
     &__item {
       flex: 1;
       text-align: center;
       img {
         width: 90%;
+        height: 100%;
       }
     }
   }

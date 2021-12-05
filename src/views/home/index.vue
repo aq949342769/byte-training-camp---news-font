@@ -3,28 +3,18 @@
     <NavBar />
     <Category />
   </div>
-  <!-- 加一个下拉列表组件 -->
-  <NewsText />
-  <NewsVideo />
-  <NewsOnePic />
-  <NewsMorePic />
+  <Content />
 </template>
 
 <script>
 import NavBar from "./components/NavBar.vue";
 import Category from "./components/Category.vue";
-import NewsText from "../../components/news/NewsText.vue";
-import NewsVideo from "../../components/news/NewsVideo.vue";
-import NewsOnePic from "../../components/news/NewsOnePic.vue";
-import NewsMorePic from "../../components/news/NewsMorePic.vue";
+import Content from "./components/Content.vue";
 export default {
   components: {
-    NewsText,
-    NewsVideo,
-    NewsOnePic,
-    NewsMorePic,
     NavBar,
     Category,
+    Content,
   },
 };
 </script>
@@ -33,5 +23,6 @@ export default {
 .category {
   position: sticky;
   top: 0px;
+  z-index: 1;
 }
 </style>
