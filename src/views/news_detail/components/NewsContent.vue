@@ -15,7 +15,7 @@ export default {
 
 <style lang="less" scoped>
 .wrap {
-  margin: 0 30px;
+  margin: 0 20px;
   &__title {
     font-size: 20px;
     font-weight: bold;
@@ -43,7 +43,8 @@ export default {
   h6,
   p,
   form {
-    margin: 5px 0;
+    margin: 10px 0;
+    line-height: 18px;
   }
   img,
   video {

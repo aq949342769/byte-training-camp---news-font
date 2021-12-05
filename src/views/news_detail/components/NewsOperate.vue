@@ -47,13 +47,15 @@ export default {
   align-items: center;
   padding: 0 10px;
   &__comment {
-    width: 55%;
+    width: 52%;
     height: 60%;
     display: flex;
     align-items: center;
   }
   &__icon {
     display: flex;
+    justify-content: flex-end;
+    margin-left: auto;
     width: 45%;
     &__item {
       flex: 1;

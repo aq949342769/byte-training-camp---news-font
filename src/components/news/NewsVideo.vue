@@ -2,7 +2,7 @@
   <div class="card__wrap">
     <div class="card__wrap__title van-multi-ellipsis--l2">{{ news.title }}</div>
     <div class="card__wrap__video">
-      <!-- <video :src="news.media" controls></video> -->
+      <video :src="news.media" controls></video>
     </div>
     <div class="card__wrap__subtitle">
       <div class="card__wrap__subtitle__item">新华社</div>

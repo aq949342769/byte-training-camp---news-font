@@ -25,7 +25,7 @@ export default {
     color: #999;
     font-size: 50%;
     padding-top: 10px;
-    width: 70%;
+    width: 100%;
     &__item {
       flex: 1;
     }

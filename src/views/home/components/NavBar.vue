@@ -16,6 +16,8 @@
 import { computed } from "@vue/reactivity";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
+import { Toast } from "vant";
+
 export default {
   setup() {
     const router = useRouter();
@@ -27,7 +29,14 @@ export default {
       console.log(is_love.value);
     };
     const toMy = () => {
-      router.push({ name: "my" });
+      Toast.loading({
+        message: "加载中...",
+        forbidClick: true,
+      });
+      setTimeout(() => {
+        router.push({ name: "my" });
+        Toast.clear();
+      }, 400);
     };
     return { is_love, active, toLove, toMy };
   },
