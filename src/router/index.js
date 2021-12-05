@@ -24,32 +24,32 @@ const routes = [
   },
   {
     path: "/register",
-    name: "Register",
+    name: "register",
     component: Register,
   },
   {
     path: "/reset",
-    name: "Reset",
+    name: "reset",
     component: Reset,
   },
   {
     path: "/news",
-    name: "NewsDetail",
+    name: "newsDetail",
     component: NewsDetail,
   },
   {
     path: "/comment",
-    name: "CommentDetail",
+    name: "commentDetail",
     component: CommentDetail,
   },
   {
     path: "/my",
-    name: "My",
+    name: "my",
     component: My,
   },
   {
     path: "/setting",
-    name: "Setting",
+    name: "setting",
     component: Setting,
   },
 ];

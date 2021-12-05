@@ -1,12 +1,28 @@
 <template>
-  <NewsText />
+  <div class="category">
+    <NavBar />
+    <Category />
+  </div>
+  <Content />
 </template>
 
 <script>
-import NewsText from "../../components/news/NewsText.vue"
+import NavBar from "./components/NavBar.vue";
+import Category from "./components/Category.vue";
+import Content from "./components/Content.vue";
 export default {
-  components:{
-    NewsText
-  }
+  components: {
+    NavBar,
+    Category,
+    Content,
+  },
 };
 </script>
+
+<style lang="less" scoped>
+.category {
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+}
+</style>
