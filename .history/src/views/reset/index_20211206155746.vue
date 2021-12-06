@@ -1,26 +1,23 @@
 <template>
 <div>
-  <van-nav-bar 
-    left-text="返回"  
-    left-arrow
-    @click-left="$router.back()"
-  />
+  <van-nav-bar left-text="返回"  left-arrow/>
   <div class="container">
-    <div class="LoginBox">
-      <div class="LoginBox_title">密码登录</div>
-      <div class="SignFlow LoginBox_content">
+    <div class="ResetBox">
+      <div class="ResetBox_title">找回密码</div>
+      <div class="SignFlow ResetBox_content">
         <div class="">
-          <input type="text" class="SignFlow_account" placeholder="请输入注册邮箱或账号"  >
+          <input type="text" class="SignFlow_account" placeholder="填写注册时的邮箱或账号"  >
         </div>
         <div class="">
-          <input type="password" class="SignFlow_password" placeholder="请输入密码"  >
+          <input type="password" class="SignFlow_code" placeholder="验证码"  >
         </div>
       </div>
-      <div class="Login_options">
-        <button type="button" class="Button Login_goRegist Button--plain">立即注册</button>
-        <button type="button" class="Button Login_forgetPassword Button--plain">忘记密码</button>
+      
+      <div class="Code">
+        <canvas id="canvas" width="100" height="35" class="Code_area"></canvas>
+        <button type="button" class="Button Code_RefreshBtn Button--plain">刷新验证码</button>
       </div>
-      <button type="submit" class="Button LoginBox_submitButton Button--yellow">登录</button>
+      <button type="submit" class="Button ResetBox_submitButton Button--yellow">确定</button>
     </div>
   </div>
 </div>
@@ -33,11 +30,7 @@ export default {
 </script>
 
 <style lang="less">
-.container {
-  margin: 10vh auto;
-  width: 75vw;
-}
-.LoginBox{
+.ResetBox{
   &_title {
     font-size: 22px;
     font-weight: 600;
@@ -62,13 +55,17 @@ export default {
       padding: 0 5px;
     }
   }
-  .Login_options {
-    margin-top: 10px;
-    margin-bottom: 30px;
-    height: 20px;
+  .Code {
+    margin-top: 15px;
+    margin-bottom: 15px;
     display: flex;
     justify-content: space-between;
-    font-size: 14px;
+    #canvas {
+      vertical-align: middle;
+      box-sizing: border-box;
+      border: 1px solid #ddd;
+      cursor: pointer;
+    }
   }
   .Button--plain {
     height: auto;
@@ -77,7 +74,7 @@ export default {
     background-color: transparent;
     text-decoration-line: underline;
     &:hover{
-      color: blue;
+      color: #005ce6;
     }
   }
 }
@@ -89,14 +86,7 @@ export default {
   height: 30px;
   cursor: pointer;
 }
-.Button--yellow {
-  background: #fff200c4;
-  width: 100%;
-  letter-spacing: 8px;
-  &:hover {
-    background: #fff200;
-  }
-}
+
 
 </style>>
 

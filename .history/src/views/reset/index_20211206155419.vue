@@ -34,7 +34,7 @@ export default {
   &_title {
     font-size: 22px;
     font-weight: 600;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
   .SignFlow {
     width: 75vw;
@@ -43,7 +43,7 @@ export default {
     div {
       border:1px solid gray;
       border-radius: 8px;
-      margin-top: 15px;
+      margin-top: 10px;
       &:hover{
         border-color: blue;
       }
@@ -56,8 +56,8 @@ export default {
     }
   }
   .Code {
-    margin-top: 20px;
-    margin-bottom: 30px;
+    margin-top: 10px;
+    margin-bottom: 15px;
     display: flex;
     justify-content: space-between;
     #canvas {
