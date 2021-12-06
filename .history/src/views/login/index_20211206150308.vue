@@ -18,7 +18,7 @@
       </div>
       <div class="Login_options">
         <button type="button" class="Button Login_goRegist Button--plain">立即注册</button>
-        <button type="button" class="Button Login_forgetPassword Button--plain">忘记密码</button>
+        <button type="button" class="Button Login_goRegist Button--plain">忘记密码</button>
       </div>
       <button type="submit" class="Button LoginBox_submitButton Button--yellow">登录</button>
     </div>
@@ -86,7 +86,7 @@ export default {
   border: 1px solid transparent;
   border-radius: 10px;
   text-align: center;
-  height: 30px;
+  height: 25px;
   cursor: pointer;
 }
 .Button--yellow {

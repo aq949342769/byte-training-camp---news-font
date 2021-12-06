@@ -7,7 +7,7 @@
   />
   <div class="container">
     <div class="LoginBox">
-      <div class="LoginBox_title">密码登录</div>
+      <div class="LoginBox_title">密码登录111</div>
       <div class="SignFlow LoginBox_content">
         <div class="">
           <input type="text" class="SignFlow_account" placeholder="请输入注册邮箱或账号"  >
@@ -18,7 +18,7 @@
       </div>
       <div class="Login_options">
         <button type="button" class="Button Login_goRegist Button--plain">立即注册</button>
-        <button type="button" class="Button Login_forgetPassword Button--plain">忘记密码</button>
+        <button type="button" class="Button Login_goRegist Button--plain">忘记密码</button>
       </div>
       <button type="submit" class="Button LoginBox_submitButton Button--yellow">登录</button>
     </div>
@@ -33,6 +33,9 @@ export default {
 </script>
 
 <style lang="less">
+body {
+  font-size: 62.5%;
+}
 .container {
   margin: 10vh auto;
   width: 75vw;
@@ -41,34 +44,31 @@ export default {
   &_title {
     font-size: 22px;
     font-weight: 600;
-    margin-bottom: 15px;
   }
   .SignFlow {
     width: 75vw;
-    line-height: 23px;
-    font-size: 14px;
+    line-height: 26px;
     div {
       border:1px solid gray;
-      border-radius: 8px;
+      border-radius: 6px;
       margin-top: 10px;
       &:hover{
         border-color: blue;
       }
     }
     input {
-      width: 90%;
+      width: 95%;
       border: none;
       margin: 2px;
       padding: 0 5px;
     }
   }
   .Login_options {
-    margin-top: 10px;
-    margin-bottom: 20px;
-    height: 20px;
+    margin-top: 1em;
+    margin-bottom: 1.5em;
+    height: 2em;
     display: flex;
     justify-content: space-between;
-    font-size: 14px;
   }
   .Button--plain {
     height: auto;
@@ -86,13 +86,13 @@ export default {
   border: 1px solid transparent;
   border-radius: 10px;
   text-align: center;
-  height: 30px;
+  height: 2.5em;
   cursor: pointer;
 }
 .Button--yellow {
   background: #fff200c4;
   width: 100%;
-  letter-spacing: 8px;
+  letter-spacing: 0.8em;
   &:hover {
     background: #fff200;
   }

@@ -1,26 +1,28 @@
 <template>
 <div>
-  <van-nav-bar 
-    left-text="返回"  
-    left-arrow
-    @click-left="$router.back()"
-  />
+  <van-nav-bar left-text="返回"  left-arrow/>
   <div class="container">
-    <div class="LoginBox">
-      <div class="LoginBox_title">密码登录</div>
-      <div class="SignFlow LoginBox_content">
+    <div class="RegistBox">
+      <div class="RegistBox_title">注册用户</div>
+      <div class="SignFlow RegistBox-content">
         <div class="">
-          <input type="text" class="SignFlow_account" placeholder="请输入注册邮箱或账号"  >
+          <input type="text" class="SignFlow_account" placeholder="账号">
         </div>
         <div class="">
-          <input type="password" class="SignFlow_password" placeholder="请输入密码"  >
+          <input type="" class="SignFlow_email" placeholder="邮箱">
+        </div>
+        <div class="">
+          <input type="password" class="SignFlow_password" placeholder="密码">
+        </div>
+        <div class="">
+          <input type="password" class="SignFlow_password_confirm" placeholder="确认密码">
         </div>
       </div>
-      <div class="Login_options">
-        <button type="button" class="Button Login_goRegist Button--plain">立即注册</button>
-        <button type="button" class="Button Login_forgetPassword Button--plain">忘记密码</button>
+      <div class="Register_options">
+        <span>已有账号？</span>
+        <button type="button" class="Button Register_goLogin Button-plain">立即登录</button>
       </div>
-      <button type="submit" class="Button LoginBox_submitButton Button--yellow">登录</button>
+      <button type="submit" class="Button RegistBox-submitButton Button-yellow">注册</button>
     </div>
   </div>
 </div>
@@ -37,7 +39,7 @@ export default {
   margin: 10vh auto;
   width: 75vw;
 }
-.LoginBox{
+.RegistBox{
   &_title {
     font-size: 22px;
     font-weight: 600;
@@ -56,29 +58,35 @@ export default {
       }
     }
     input {
-      width: 90%;
+      width: 95%;
       border: none;
       margin: 2px;
       padding: 0 5px;
     }
   }
-  .Login_options {
+  .Register_options {
     margin-top: 10px;
     margin-bottom: 20px;
     height: 20px;
     display: flex;
     justify-content: space-between;
     font-size: 14px;
+
+    span {
+      display: inline-block;
+      line-height: 20px;
+    }
+
   }
-  .Button--plain {
+  .Button-plain {
     height: auto;
     border: none;
     line-height: inherit;
     background-color: transparent;
     text-decoration-line: underline;
     &:hover{
-      color: blue;
-    }
+      color: #005ce6;
+  }
   }
 }
 .Button {
@@ -89,11 +97,11 @@ export default {
   height: 30px;
   cursor: pointer;
 }
-.Button--yellow {
+.Button-yellow{
   background: #fff200c4;
   width: 100%;
   letter-spacing: 8px;
-  &:hover {
+  &:hover{
     background: #fff200;
   }
 }

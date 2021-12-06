@@ -3,7 +3,7 @@
   <van-nav-bar left-text="返回"  left-arrow/>
   <div class="container">
     <div class="RegistBox">
-      <div class="RegistBox_title">注册用户</div>
+      <div class="RegistBox-title">注册用户</div>
       <div class="SignFlow RegistBox-content">
         <div class="">
           <input type="text" class="SignFlow_account" placeholder="账号">
@@ -18,9 +18,9 @@
           <input type="password" class="SignFlow_password_confirm" placeholder="确认密码">
         </div>
       </div>
-      <div class="Register_options">
+      <div class="Register-options">
         <span>已有账号？</span>
-        <button type="button" class="Button Register_goLogin Button-plain">立即登录</button>
+        <button type="button" class="Button Button-plain">立即登录</button>
       </div>
       <button type="submit" class="Button RegistBox-submitButton Button-yellow">注册</button>
     </div>
@@ -35,48 +35,46 @@ export default {
 </script>
 
 <style lang="less">
+body {
+  font-size: 62.5%;
+}
 .container {
   margin: 10vh auto;
   width: 75vw;
 }
 .RegistBox{
-  &_title {
-    font-size: 22px;
+  .RegistBox-title {
+    font-size: 1.5em;
     font-weight: 600;
-    margin-bottom: 15px;
   }
   .SignFlow {
     width: 75vw;
-    line-height: 23px;
-    font-size: 14px;
+    line-height: 30px;
     div {
       border:1px solid gray;
-      border-radius: 8px;
-      margin-top: 10px;
+      border-radius: 6px;
+      margin-top: 1em;
       &:hover{
         border-color: blue;
       }
     }
     input {
-      width: 90%;
+      width: 95%;
       border: none;
       margin: 2px;
       padding: 0 5px;
     }
   }
-  .Register_options {
-    margin-top: 10px;
-    margin-bottom: 20px;
-    height: 20px;
+  .Register-options {
+    margin-top: 1em;
+    margin-bottom: 1.5em;
+    height: 2em;
     display: flex;
     justify-content: space-between;
-    font-size: 14px;
-
     span {
       display: inline-block;
-      line-height: 20px;
+      line-height: 2em;
     }
-
   }
   .Button-plain {
     height: auto;
@@ -94,13 +92,13 @@ export default {
   border: 1px solid transparent;
   border-radius: 10px;
   text-align: center;
-  height: 30px;
+  height: 2.5em;
   cursor: pointer;
 }
 .Button-yellow{
   background: #fff200c4;
   width: 100%;
-  letter-spacing: 8px;
+  letter-spacing: 0.8em;
   &:hover{
     background: #fff200;
   }
