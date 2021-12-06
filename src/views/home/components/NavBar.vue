@@ -16,7 +16,7 @@
 import { computed } from "@vue/reactivity";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
-import { Toast } from "vant";
+import { Toast, Dialog } from "vant";
 
 export default {
   setup() {
@@ -26,7 +26,11 @@ export default {
     const active = computed(() => store.state.news.active);
     // 设置关注该频道(未完成)
     const toLove = () => {
-      console.log(is_love.value);
+      Dialog.confirm({
+        message: is_love.value ? "您要取消关注该频道？" : "你要关注该频道吗？",
+      }).then(() => {
+        store.dispatch("news/postNewsLikes");
+      });
     };
     const toMy = () => {
       Toast.loading({

@@ -53,7 +53,7 @@ export default {
       }, 400);
     };
     onMounted(async () => {
-      await store.dispatch("news/getRecommendNewsList");
+      await store.dispatch("news/getNewsList",0);
     });
     return { newsList, toDetail };
   },
