@@ -38,8 +38,8 @@ export default {
     let like_amout = 9;
     let reply_amout = 10;
     let unlike_amout = 0;
-    let placeholder = '回复用户xxx（默认是所点开的评论者）';
-    let reply_object = '';
+    let placeholder = '回复用户xxx';
+    let reply_object = 'xx';
     return{
       like_amout,
       reply_amout,
@@ -58,23 +58,15 @@ body {
 }
 
 .comment-send-lite {
-  width: 90vw;
+  width: 100vw;
   position: fixed;
   bottom: 0;
-  /* left:0;
-  right:0; */
-  margin-left: 8px;
   font-size: 13px;
-  display: block;
+  text-align: center;
+  margin: 0 auto;
   padding-bottom: 10px;
   background-color: white;
-  box-sizing:border-box;
-  .textarea-inherit {
-    width: 98%;
-    overflow: auto;
-    word-break: break-all; //解决兼容问题
-  }
-
+  /* z-index: 2; */
   textarea {
     background-color: #efefef;
     border: none;
@@ -84,6 +76,11 @@ body {
     position: relative;
     overflow-wrap: break-word;
     padding: 0 10px;
+    .textarea-inherit {
+      width: 100%;
+      overflow: auto;
+      word-break: break-all; //解决兼容问题
+    }
   }
 }
 

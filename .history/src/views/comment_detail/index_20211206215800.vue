@@ -6,19 +6,13 @@
         <!-- 展开的某一条评论详情  -->
         <comment></comment>
         <!-- 该评论的回复 -->
-        <!-- <div 
-          class="reply-box" 
-          v-for="(replyitem, index) in replies_list"
-          :key="index"> -->
-        <div class="reply-box" >  
-          <reply></reply>
-        </div>
+        <reply></reply>
       </div>
     </div>
     <!--发表评论输入框-->
     <div class="comment-send-lite">
       <div class="textarea-container">
-        <textarea :placeholder="placeholder"  rows="1" class="textarea-inherit"></textarea>
+        <textarea :placeholder="placeholder" cols="40" rows="1" ></textarea>
       </div>
     </div>
     
@@ -38,8 +32,8 @@ export default {
     let like_amout = 9;
     let reply_amout = 10;
     let unlike_amout = 0;
-    let placeholder = '回复用户xxx（默认是所点开的评论者）';
-    let reply_object = '';
+    let placeholder = '回复用户xxx';
+    let reply_object = 'xx';
     return{
       like_amout,
       reply_amout,
@@ -57,24 +51,29 @@ body {
   height: 100vh;
 }
 
+.info {
+  color: #D4D4D4;
+  padding-left: 10px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  & > span{
+    margin-right: 20px; 
+    & > span{
+      margin-right: 5px;
+    }
+  }
+}
+
 .comment-send-lite {
-  width: 90vw;
+  width: 100vw;
   position: fixed;
   bottom: 0;
-  /* left:0;
-  right:0; */
-  margin-left: 8px;
   font-size: 13px;
-  display: block;
+  text-align: center;
+  margin: 0 auto;
   padding-bottom: 10px;
   background-color: white;
-  box-sizing:border-box;
-  .textarea-inherit {
-    width: 98%;
-    overflow: auto;
-    word-break: break-all; //解决兼容问题
-  }
-
+  /* z-index: 2; */
   textarea {
     background-color: #efefef;
     border: none;

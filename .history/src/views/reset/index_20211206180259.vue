@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import Identify from '../../components/identify'
 export default {
   setup(){
     

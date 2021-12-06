@@ -38,8 +38,8 @@ export default {
     let like_amout = 9;
     let reply_amout = 10;
     let unlike_amout = 0;
-    let placeholder = '回复用户xxx（默认是所点开的评论者）';
-    let reply_object = '';
+    let placeholder = '回复用户xxx';
+    let reply_object = 'xx';
     return{
       like_amout,
       reply_amout,
