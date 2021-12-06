@@ -12,7 +12,7 @@
     <van-divider>到底了</van-divider>
   </div>
   <!-- footer -->
-  <NewsOperate />
+  <NewsOperate :newsDetail="newsDetail"/>
 </template>
 
 <script>
