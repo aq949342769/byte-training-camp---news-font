@@ -3,20 +3,20 @@
     title="用户设置"
     left-arrow
     @click-left="$router.back()"
-    safe-area-inset-top="true"
+    safe-area-inset-top
     class="nav"
   ></van-nav-bar>
   <van-cell-group class="cell-group1">
     <van-cell title="头像" is-link @click="handlePop('pic_show')"></van-cell>
     <van-cell
       title="昵称"
-      value="XXX"
+      :value="userInfo.nick_name"
       is-link
       @click="handlePop('nick_show')"
     ></van-cell>
     <van-cell
       title="邮箱"
-      value="xxxx@qq.com"
+      :value="userInfo.email"
       is-link
       @click="handlePop('email_show')"
     ></van-cell>
@@ -29,7 +29,7 @@
     </van-cell>
     <van-cell
       title="字体大小"
-      value="中"
+      value="da"
       is-link
       @click="handlePop('font_show')"
     >
@@ -57,8 +57,19 @@
 </template>
 
 <script>
-
+import { reactive } from "vue";
+import { useStore } from "vuex";
+const useHttpEffect = () => {
+  const store = useStore();
+  const userInfo = reactive(store.state.user.userInfo);
+  const userSetting = reactive(store.state.user.userSetting);
+  return { userInfo, userSetting };
+};
 export default {
+  setup() {
+    const { userInfo, userSetting } = useHttpEffect();
+    return { userInfo, userSetting };
+  },
   data() {
     return {
       checked: true,
@@ -69,7 +80,6 @@ export default {
       font_size: [{ name: "大" }, { name: "中" }, { name: "小" }],
     };
   },
-  
   methods: {
     handlePop(data_name) {
       this[data_name] = !this[data_name];
