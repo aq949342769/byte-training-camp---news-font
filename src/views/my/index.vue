@@ -13,8 +13,8 @@
   </van-nav-bar>
   <div id="user_wrapper">
     <div id="pic"></div>
-    <div id="nick_name">xyd</div>
-    <div id="email">xxxxxxxxxxxx@qq.com</div>
+    <div id="nick_name">{{ userInfo.nick_name }}</div>
+    <div id="email">{{ userInfo.email }}</div>
   </div>
 
   <van-cell-group class="top">
@@ -32,19 +32,28 @@
 </template>
 
 <script>
-import {getUserInfo} from '../../network/api/my';
+import { computed } from "vue";
+import { useStore } from "vuex";
+const userHttpEffect = () => {
+  const store = useStore();
+  store.dispatch("Ac_getUserInfo", this);
+  store.dispatch("Ac_getUserSetting", this);
+  const userInfo = computed(() => store.state.user.userInfo);
+  return { userInfo };
+};
 export default {
-  created(){
-    getUserInfo().then((result) => {
-      console.log(result);
-    }).catch((err) => {
-      console.log(err);
-    });
-  }
+  setup() {
+    const { userInfo } = userHttpEffect();
+    return { userInfo };
+  },
 };
 </script>
 
 <style lang="less" scoped>
+.nav {
+  position: sticky;
+  top: 0;
+}
 #user_wrapper {
   display: flex;
   flex-direction: column;
