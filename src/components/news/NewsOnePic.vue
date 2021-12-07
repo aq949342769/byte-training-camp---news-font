@@ -3,9 +3,9 @@
     <div class="card__wrap__left">
       <div class="card__wrap__left__title van-multi-ellipsis--l2">{{news.title}}</div>
       <div class="card__wrap__left__subtitle">
-        <div class="card__wrap__left__subtitle__item">新华社</div>
-        <div class="card__wrap__left__subtitle__item">345评论</div>
-        <div class="card__wrap__left__subtitle__item">2天前</div>
+        <!-- <div class="card__wrap__left__subtitle__item">新华社</div> -->
+        <!-- <div class="card__wrap__left__subtitle__item">345评论</div> -->
+        <div class="card__wrap__subtitle__item">{{news.publish_time}} 发布</div>
       </div>
     </div>
     <div class="card__wrap__right">

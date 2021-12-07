@@ -18,7 +18,7 @@ import {
   PullRefresh,
   Divider,
   Tabbar,
-  TabbarItem,
+  TabbarItem,ShareSheet 
 } from "vant";
 const components = [
   Button,
@@ -40,7 +40,7 @@ const components = [
   PullRefresh,
   Divider,
   Tabbar,
-  TabbarItem,
+  TabbarItem,ShareSheet 
 ];
 
 export function vant(app) {

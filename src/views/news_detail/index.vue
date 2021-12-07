@@ -1,34 +1,39 @@
 <template>
-  <van-nav-bar :title="newsDetail.title" left-arrow @click-left="onClickLeft" />
+  <div class="navbar">
+    <van-nav-bar :title="newsDetail.title" left-arrow @click-left="onClickLeft">
+      <template #right>
+        <van-icon name="ellipsis" size="18" @click="showShare = true" />
+      </template>
+    </van-nav-bar>
+  </div>
   <!-- 新闻区 -->
   <NewsContent :newsDetail="newsDetail" />
   <van-divider>正文结束</van-divider>
   <!-- 评论区 -->
   <NewsComment />
-  <!-- 推荐新闻区 -->
-  <div class="recomment">
-    <div class="recomment__title van-hairline--bottom">推荐新闻</div>
-    <NewsRecommendation />
-    <van-divider>到底了</van-divider>
-  </div>
   <!-- footer -->
-  <NewsOperate />
+  <NewsOperate :newsDetail="newsDetail" />
+  <van-share-sheet
+    v-model:show="showShare"
+    title="立即分享给好友"
+    :options="options"
+    @select="onSelect"
+  />
 </template>
 
 <script>
-import { computed, onMounted } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 import NewsContent from "./components/NewsContent.vue";
 import NewsComment from "./components/NewsComment.vue";
-import NewsRecommendation from "../../components/news/index.vue";
 import NewsOperate from "./components/NewsOperate.vue";
+import { Toast } from "vant";
 
 export default {
   components: {
     NewsContent,
     NewsComment,
-    NewsRecommendation,
     NewsOperate,
   },
   setup() {
@@ -36,6 +41,20 @@ export default {
     const store = useStore();
     const onClickLeft = () => history.back();
     const newsDetail = computed(() => store.state.news.newsDetail);
+    const showShare = ref(false);
+    const options = [
+      { name: "微信", icon: "wechat" },
+      { name: "微博", icon: "weibo" },
+      { name: "复制链接", icon: "link" },
+      { name: "分享海报", icon: "poster" },
+      { name: "二维码", icon: "qrcode" },
+    ];
+
+    const onSelect = (option) => {
+      Toast(option.name);
+      showShare.value = false;
+    };
+
     onMounted(() => {
       const id = route.query.id;
       store.dispatch("news/getNewsDetailList", id);
@@ -43,12 +62,20 @@ export default {
     return {
       onClickLeft,
       newsDetail,
+      options,
+      onSelect,
+      showShare,
     };
   },
 };
 </script>
 
 <style lang="less" scoped>
+.navbar {
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+}
 .recomment {
   padding-bottom: 50px;
   &__title {
@@ -59,5 +86,11 @@ export default {
     padding: 10px;
     letter-spacing: 2px;
   }
+}
+</style>
+
+<style>
+.van-nav-bar__title {
+  font-weight: bold;
 }
 </style>
