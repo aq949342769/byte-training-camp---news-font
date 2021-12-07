@@ -9,9 +9,10 @@
   <div class="recomment">
     <div class="recomment__title van-hairline--bottom">推荐新闻</div>
     <NewsRecommendation />
+    <van-divider>到底了</van-divider>
   </div>
   <!-- footer -->
-  <NewsOperate />
+  <NewsOperate :newsDetail="newsDetail"/>
 </template>
 
 <script>
@@ -49,6 +50,7 @@ export default {
 
 <style lang="less" scoped>
 .recomment {
+  padding-bottom: 50px;
   &__title {
     font-size: 20px;
     font-weight: 500;

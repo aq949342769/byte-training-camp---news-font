@@ -16,11 +16,7 @@ import { useStore } from "vuex";
 const useHttpEffect = () => {
   const store = useStore();
   const newsList = computed(() => store.state.news.newsCateList);
-  const getList = async () => {
-    store.dispatch("news/getCateList");
-  };
-
-  return { newsList, getList };
+  return { newsList };
 };
 
 // 判断该频道是否为喜爱的
@@ -45,24 +41,19 @@ const useTabEffect = () => {
     isLove(newVal);
   });
   const changeTab = (item) => {
-    if (item.name) {
-      store.dispatch("news/getOrdinaryNewsList",item.name);
-    } else {
-      store.dispatch("news/getRecommendNewsList");
-    }
+    store.dispatch("news/getNewsList", item.name);
   };
   return { active, changeTab };
 };
 
 export default {
   setup() {
-    const { newsList, getList } = useHttpEffect();
+    const { newsList } = useHttpEffect();
     const { getLoveList, is_love, isLove } = useIsLoveEffect();
     const { active, changeTab } = useTabEffect();
     onMounted(async () => {
-      await getList();
       await getLoveList();
-      isLove(0, newsList);
+      isLove(0);
     });
     return { active, newsList, is_love, changeTab };
   },
