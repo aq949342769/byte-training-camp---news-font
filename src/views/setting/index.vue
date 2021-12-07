@@ -3,7 +3,7 @@
     title="用户设置"
     left-arrow
     @click-left="$router.back()"
-    safe-area-inset-top="true"
+    safe-area-inset-top
     class="nav"
   ></van-nav-bar>
   <van-cell-group class="cell-group1">

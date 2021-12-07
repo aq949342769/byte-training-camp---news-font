@@ -4,7 +4,7 @@
     left-arrow
     @click-left="$router.back()"
     @click-right="$router.replace('setting')"
-    safe-area-inset-top="true"
+    safe-area-inset-top
     class="nav"
     >
     <template #right>
