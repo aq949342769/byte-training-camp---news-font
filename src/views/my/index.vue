@@ -6,9 +6,9 @@
     @click-right="$router.replace('setting')"
     safe-area-inset-top
     class="nav"
-    >
+  >
     <template #right>
-      <van-icon name="setting-o" size="20"/>
+      <van-icon name="setting-o" size="20" />
     </template>
   </van-nav-bar>
   <div id="user_wrapper">
@@ -32,7 +32,16 @@
 </template>
 
 <script>
-export default {};
+import {getUserInfo} from '../../network/api/my';
+export default {
+  created(){
+    getUserInfo().then((result) => {
+      console.log(result);
+    }).catch((err) => {
+      console.log(err);
+    });
+  }
+};
 </script>
 
 <style lang="less" scoped>

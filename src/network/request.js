@@ -5,6 +5,7 @@ export function request(config) {
   // 1 创建实例
   const instance = axios.create({
     baseURL: 'https://www.fastmock.site/mock/f22549d8e517e26fc838cac2e1d89ff7/api',
+    // baseURL:"https://dc-news-api.kakkk.net/",
     timeout: 5000,
     headers: { 'Authorization': token }
   })

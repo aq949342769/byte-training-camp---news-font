@@ -1,4 +1,6 @@
-import { request } from "../request";
+import {
+  request
+} from "../request";
 
 export function getUserInfo() {
   return request({
