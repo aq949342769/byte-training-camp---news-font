@@ -1,8 +1,8 @@
 <template>
-  <div class="wrap">
-    <div class="wrap__title">{{ newsDetail.title }}</div>
-    <div class="wrap__time">{{ newsDetail.publish_time }}</div>
-    <div class="wrap__content" v-html="newsDetail.content"></div>
+  <div class="detail-wrap">
+    <div class="detail-wrap__title">{{ newsDetail.title }}</div>
+    <div class="detail-wrap__time">{{ newsDetail.publish_time }}</div>
+    <div class="detail-wrap__content" v-html="newsDetail.content"></div>
   </div>
 </template>
 
@@ -14,11 +14,12 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.wrap {
-  margin: 0 20px;
+.detail-wrap {
+  margin: 20px 23px;
   &__title {
-    font-size: 20px;
-    font-weight: bold;
+    line-height: 40px;
+    font-size: 23px;
+    font-weight: 700;
     text-align: center;
     margin: 10px 0;
   }
@@ -32,7 +33,8 @@ export default {
 </style>
 
 <style lang="less">
-.wrap__content {
+.detail-wrap__content {
+  font-size: 16px;
   div,
   span,
   h1,
@@ -43,12 +45,23 @@ export default {
   h6,
   p,
   form {
-    margin: 10px 0;
-    line-height: 18px;
+    margin: 10px 0 20px 0;
+    line-height: 1.71;
+    br {
+    line-height: 0px;
+    }
   }
-  img,
-  video {
-    width: 100%;
+  .pgc-h-arrow-right {
+    font-weight: bold;
   }
+  .pgc-img {
+    margin: 18px 0;
+  }
+  img,video {
+      max-width: 100%;
+      display: block;
+      border-radius: 4px;
+      margin: 0 auto 8px;
+    }
 }
 </style>

@@ -78,7 +78,7 @@ export const news = {
     },
     changeNewsList(state, newData) {
       newData.forEach((news) => {
-        const date = new Date(news.publish_time);
+        const date = new Date(Number(news.publish_time));
         const Y = date.getFullYear() + "年";
         const M =
           (date.getMonth() + 1 < 10
