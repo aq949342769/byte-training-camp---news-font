@@ -5,8 +5,6 @@ import {
 export function getUserInfo() {
   return request({
     url: "/v1/user/info",
-<<<<<<< HEAD
-=======
   });
 }
 //获取用户设置
@@ -29,6 +27,5 @@ export function updateUserSetting(data) {
     method: "PUT",
     url: "/v1/user/setting",
     data: data
->>>>>>> 5fc8343bbf7cedd2a251504ca0cc66db594f21a8
   });
 }

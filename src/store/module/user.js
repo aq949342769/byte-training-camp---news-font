@@ -1,6 +1,14 @@
-<<<<<<< HEAD
-import { login, register } from "../../network/api/user.js"
-import { Toast } from "vant";
+import {
+  login,
+  register
+} from "../../network/api/user.js"
+import {
+  getUserInfo,
+  getUserSetting
+} from '../../network/api/my.js';
+import {
+  Toast
+} from "vant";
 
 export const user = {
   namespaced: true,
@@ -12,13 +20,18 @@ export const user = {
     password: '',
     email: '',
     avatar: '',
+    userSetting: {},
+    userInfo: {
+      nick_name: '',
+      email: ''
+    },
   }),
   getters: {
     //获取登录状态
     isLogin: (state) => {
       return state.isLogin
     },
-    
+
     getUsername: (state) => {
       return state.username
     },
@@ -42,7 +55,13 @@ export const user = {
       state.email = email;
       state.avatar = avatar;
 
-    } 
+    },
+    Mu_getUserInfo(state, userInfo) {
+      state.userInfo = userInfo;
+    },
+    Mu_getUserSetting(state, userSetting) {
+      state.userSetting = userSetting;
+    }
   },
   actions: {
     // 登录
@@ -54,13 +73,19 @@ export const user = {
         .then((res) => {
           console.log(username, password)
           console.log(res)
-          
+
           if (res.code === 0) {
             ctx.commit("userStatus", true); //保存登录状态
             Toast.success("登录成功")
-            let {id, user_name, nick_name, email, avatar} = res.data;
-            ctx.commit("changUserInfo", id, user_name, nick_name, email, avatar)//保存账号和密码
-            
+            let {
+              id,
+              user_name,
+              nick_name,
+              email,
+              avatar
+            } = res.data;
+            ctx.commit("changUserInfo", id, user_name, nick_name, email, avatar) //保存账号和密码
+
           } else {
             Toast(res.msg);
             console.log(res)
@@ -82,10 +107,10 @@ export const user = {
           console.log(username, email, password)
           console.log(res)
           if (res.code === 0) {
-            ctx.commit("userStatus", true);//注册成功即已登录
+            ctx.commit("userStatus", true); //注册成功即已登录
             Toast.success("注册成功")
             const user_id = res.data.id
-            ctx.commit("changUserInfo", user_id)//保存账号和密码
+            ctx.commit("changUserInfo", user_id) //保存账号和密码
           } else {
             Toast(res.msg);
             console.log(res)
@@ -95,31 +120,8 @@ export const user = {
           Toast.fail('注册失败');
           console.log(err);
         });
-=======
-import {
-  getUserInfo,
-  getUserSetting,
-
-
-} from '../../network/api/my';
-export const user = {
-  state: () => ({
-    userInfo: {
-      nick_name: '',
-      emial: ''
     },
-    userSetting: {}
-  }),
-  getters: {},
-  mutations: {
-    Mu_getUserInfo(state, userInfo) {
-      state.userInfo = userInfo;
-    },
-    Mu_getUserSetting(state, userSetting) {
-      state.userSetting = userSetting;
-    }
-  },
-  actions: {
+
     async Ac_getUserInfo(ctx) {
       await getUserInfo().then((result) => {
         ctx.commit("Mu_getUserInfo", result.data)
@@ -127,13 +129,14 @@ export const user = {
         console.log(err);
       });
     },
+
     async Ac_getUserSetting(ctx) {
       await getUserSetting().then((result) => {
         ctx.commit("Mu_getUserSetting", result.data)
       }).catch((err) => {
         console.log(err);
       });
->>>>>>> 5fc8343bbf7cedd2a251504ca0cc66db594f21a8
     }
+
   },
 };

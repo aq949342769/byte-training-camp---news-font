@@ -35,8 +35,8 @@ import { computed } from "vue";
 import { useStore } from "vuex";
 const userHttpEffect = () => {
   const store = useStore();
-  store.dispatch("Ac_getUserInfo");
-  store.dispatch("Ac_getUserSetting");
+  store.dispatch("user/Ac_getUserInfo");
+  store.dispatch("user/Ac_getUserSetting");
   const userInfo = computed(() => store.state.user.userInfo);
   return { userInfo };
 };
