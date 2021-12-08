@@ -2,7 +2,7 @@
   <van-nav-bar
     title="个人中心"
     left-arrow
-    @click-left="$router.back()"
+    @click-left="$router.push({ name: 'home' })"
     @click-right="$router.replace('setting')"
     safe-area-inset-top
     class="nav"
