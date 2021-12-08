@@ -1,6 +1,8 @@
 .DS_Store
 node_modules
 /dist
+.VSCodeCounter
+.history
 
 
 # local env files
