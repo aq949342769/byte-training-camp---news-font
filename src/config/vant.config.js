@@ -8,7 +8,6 @@ import {
   CellGroup,
   Switch,
   Slider,
-  Popup,
   Field,
   ActionSheet,
   Card,
@@ -19,6 +18,7 @@ import {
   Divider,
   Tabbar,
   TabbarItem,
+  Dialog
 } from "vant";
 const components = [
   Button,
@@ -30,7 +30,6 @@ const components = [
   CellGroup,
   Switch,
   Slider,
-  Popup,
   Field,
   ActionSheet,
   Card,
@@ -41,6 +40,7 @@ const components = [
   Divider,
   Tabbar,
   TabbarItem,
+  Dialog
 ];
 
 export function vant(app) {
