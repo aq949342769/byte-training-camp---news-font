@@ -1,4 +1,9 @@
-<<<<<<< HEAD
+import {
+  getUserInfo,
+  getUserSetting,
+
+
+} from '../../network/api/my';
 import { login, register } from "../../network/api/user.js"
 import { Toast } from "vant";
 
@@ -6,43 +11,32 @@ export const user = {
   namespaced: true,
   state: () => ({
     isLogin: false,
-    user_id: '',
-    nick_name: '',
-    username: '',
-    password: '',
-    email: '',
-    avatar: '',
+    userInfo: {
+      nick_name: '',
+      emial: ''
+    },
+    userSetting: {}
   }),
+  
   getters: {
     //获取登录状态
     isLogin: (state) => {
       return state.isLogin
     },
-    
-    getUsername: (state) => {
-      return state.username
-    },
-    getPassword: (state) => {
-      return state.password
-    },
-    getAvatar: (state) => {
-      return state.avatar
-    },
   },
+
   mutations: {
     //保存登录状态
     userStatus(state, flag) {
       state.isLogin = flag
     },
-    //保存个人信息
-    changUserInfo(state, user_id, username, nick_name, email, avatar) {
-      state.user_id = user_id;
-      state.username = username;
-      state.nick_name = nick_name;
-      state.email = email;
-      state.avatar = avatar;
 
-    } 
+    Mu_getUserInfo(state, userInfo) {
+      state.userInfo = userInfo;
+    },
+    Mu_getUserSetting(state, userSetting) {
+      state.userSetting = userSetting;
+    }
   },
   actions: {
     // 登录
@@ -72,6 +66,7 @@ export const user = {
         });
     },
 
+    // 注册
     async handleRegister(ctx, userinfo) {
       const method = "post";
       let username = userinfo.username;
@@ -95,31 +90,8 @@ export const user = {
           Toast.fail('注册失败');
           console.log(err);
         });
-=======
-import {
-  getUserInfo,
-  getUserSetting,
-
-
-} from '../../network/api/my';
-export const user = {
-  state: () => ({
-    userInfo: {
-      nick_name: '',
-      emial: ''
     },
-    userSetting: {}
-  }),
-  getters: {},
-  mutations: {
-    Mu_getUserInfo(state, userInfo) {
-      state.userInfo = userInfo;
-    },
-    Mu_getUserSetting(state, userSetting) {
-      state.userSetting = userSetting;
-    }
-  },
-  actions: {
+    
     async Ac_getUserInfo(ctx) {
       await getUserInfo().then((result) => {
         ctx.commit("Mu_getUserInfo", result.data)
@@ -133,7 +105,7 @@ export const user = {
       }).catch((err) => {
         console.log(err);
       });
->>>>>>> 5fc8343bbf7cedd2a251504ca0cc66db594f21a8
+      
     }
   },
 };
