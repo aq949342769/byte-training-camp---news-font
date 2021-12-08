@@ -26,6 +26,7 @@ export const user = {
       email: ''
     },
   }),
+  
   getters: {
     //获取登录状态
     isLogin: (state) => {
@@ -42,18 +43,12 @@ export const user = {
       return state.avatar
     },
   },
+
   mutations: {
     //保存登录状态
     userStatus(state, flag) {
       state.isLogin = flag
     },
-    //保存个人信息
-    changUserInfo(state, user_id, username, nick_name, email, avatar) {
-      state.user_id = user_id;
-      state.username = username;
-      state.nick_name = nick_name;
-      state.email = email;
-      state.avatar = avatar;
 
     },
     Mu_getUserInfo(state, userInfo) {
@@ -97,6 +92,7 @@ export const user = {
         });
     },
 
+    // 注册
     async handleRegister(ctx, userinfo) {
       const method = "post";
       let username = userinfo.username;
@@ -121,7 +117,6 @@ export const user = {
           console.log(err);
         });
     },
-
     async Ac_getUserInfo(ctx) {
       await getUserInfo().then((result) => {
         ctx.commit("Mu_getUserInfo", result.data)
@@ -138,5 +133,5 @@ export const user = {
       });
     }
 
-  },
+  }
 };
