@@ -1,5 +1,5 @@
 <template>
-  <van-cell :title="title" is-link @click="handleCellClick"> </van-cell>
+  <van-cell :title="title" :value="value" @click="handleCellClick"> </van-cell>
   <van-dialog
     v-model:show="show"
     title="修改个人信息"
@@ -22,7 +22,7 @@ export default {
     value: {
       type: String,
       default() {
-        return null;
+        return "请先登陆";
       },
     },
   },

@@ -21,10 +21,9 @@
     <van-cell title="使用报告" is-link></van-cell>
   </van-cell-group>
   <van-cell-group class="center">
-    <van-cell title="收藏内容" is-link></van-cell>
-    <van-cell title="我的关注" is-link></van-cell>
-    <van-cell title="我的评论" is-link></van-cell>
-    <van-cell title="我的点赞" is-link></van-cell>
+    <van-cell title="收藏内容" is-link @click="this.$router.replace('/my_fav_news')"></van-cell>
+    <van-cell title="我的关注" is-link @click="this.$router.replace('/my_subscribe')"></van-cell>
+    <van-cell title="我的点赞" is-link @click="this.$router.replace('/my_thumbs')"></van-cell>
   </van-cell-group>
   <van-cell-group>
     <van-cell title="退出账户" is-link id="exit"></van-cell>
