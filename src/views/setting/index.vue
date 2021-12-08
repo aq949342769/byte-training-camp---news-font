@@ -6,30 +6,24 @@
     safe-area-inset-top
     class="nav"
   ></van-nav-bar>
-  <van-cell-group class="cell-group1">
-    <van-cell title="头像" is-link @click="handleCellClick(0)"></van-cell>
-    <van-cell
-      title="昵称"
-      :value="userInfo.nick_name"
-      is-link
-      @click="handleCellClick(1)"
-    ></van-cell>
-    <van-cell
-      title="邮箱"
-      :value="userInfo.email"
-      is-link
-      @click="handleCellClick(2)"
-    ></van-cell>
-  </van-cell-group>
-  <van-cell-group class="cell-group2">
-    <van-cell title="黑夜模式">
-      <template #right-icon>
-        <van-switch v-model="checked" size="20px"></van-switch>
-      </template>
-    </van-cell>
-    <van-cell title="字体大小" :value="font_text" is-link @click="font_show = true">
-    </van-cell>
-  </van-cell-group>
+
+  <setting-cell title="头像"> </setting-cell>
+  <setting-cell title="昵称" :value="userInfo.nick_name"> </setting-cell>
+  <setting-cell title="邮箱" :value="userInfo.email"> </setting-cell>
+
+  <van-cell title="黑夜模式">
+    <template #right-icon>
+      <van-switch v-model="checked" size="20px"></van-switch>
+    </template>
+  </van-cell>
+  <van-cell
+    title="字体大小"
+    :value="font_text"
+    is-link
+    @click="font_show = true"
+  >
+  </van-cell>
+
   <van-button round type="primary" id="save_btn">保存设置</van-button>
 
   <van-action-sheet
@@ -44,7 +38,8 @@
 <script>
 import { reactive, ref } from "vue";
 import { useStore } from "vuex";
-import { Dialog,Toast } from "vant";
+import { Dialog, Toast } from "vant";
+import SettingCell from "./components/SettingCell.vue";
 const useHttpEffect = () => {
   const store = useStore();
   const userInfo = reactive(store.state.user.userInfo);
@@ -60,10 +55,9 @@ export default {
     let font_text = ref("中");
     const handleCellClick = (index) => {
       if (index === 1) {
-        Dialog.alert({
-          title: "修改个人信息",
+        Dialog.confirm({
+          title: "请输入新的昵称",
           message: "neirong",
-          theme: "round-button",
         })
           .then(() => {})
           .catch(() => {});
@@ -82,12 +76,10 @@ export default {
       checked,
       font_show,
       font_select,
-      font_text
+      font_text,
     };
   },
-  data() {
-    return {};
-  },
+  components: { SettingCell },
 };
 </script>
 
