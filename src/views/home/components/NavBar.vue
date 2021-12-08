@@ -29,7 +29,7 @@ export default {
       Dialog.confirm({
         message: is_love.value ? "您要取消关注该频道？" : "你要关注该频道吗？",
       }).then(() => {
-        store.dispatch("news/postNewsLikes");
+        store.dispatch("news/postNewsCateLikes");
       });
     };
     const toMy = () => {

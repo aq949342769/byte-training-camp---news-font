@@ -4,6 +4,7 @@ import Home from "../views/home/index.vue";
 import Login from "../views/login/index.vue";
 import Register from "../views/register/index.vue";
 import Reset from "../views/reset/index.vue";
+import Retrieve from "../views/retrieve/index.vue";
 import NewsDetail from "../views/news_detail/index.vue";
 import CommentDetail from "../views/comment_detail/index.vue";
 import My from "../views/my/index.vue";
@@ -27,10 +28,17 @@ const routes = [
     name: "register",
     component: Register,
   },
+  //重置密码
   {
     path: "/reset",
     name: "reset",
     component: Reset,
+  },
+  //找回密码（发邮件）
+  {
+    path: "/retrieve",
+    name: "retrieve",
+    component: Retrieve,
   },
   {
     path: "/news",

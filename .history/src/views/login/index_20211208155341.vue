@@ -1,0 +1,122 @@
+<template>
+<div>
+  <van-nav-bar 
+    left-text="返回"  
+    left-arrow
+    @click-left="$router.back()"
+  />
+  <div class="container">
+    <div class="LoginBox">
+      <div class="LoginBox_title">密码登录</div>
+      <div class="SignFlow LoginBox_content">
+        <van-field v-model="userinfo.username" name="账号" placeholder="请输入注册邮箱或账号" :error="unfillAccount"/>
+        <van-field v-model="userinfo.password" type="password"  placeholder="请输入密码" :error="unfillPassword" />
+      </div>
+      <div class="Login_options">
+        <button type="button" class="Button Login_goRegist Button--plain" @click="goRegister">立即注册</button>
+        <button type="button" class="Button Login_forgetPassword Button--plain" @click="goRetrieve">忘记密码</button>
+      </div>
+      <button type="submit" class="Button LoginBox_submitButton Button--yellow" @click="handleLogin">登录</button>
+    </div>
+  </div>
+</div>
+</template>
+
+<script>
+import { useRouter } from "vue-router";
+/* import { useStore } from "vuex";  */
+import { reactive, ref, watch} from "vue";
+import { Toast } from "vant";
+
+/* const loginTips = (tip) => {
+    Toast({message: tip});
+}; */
+const doVerify = () => {
+  const checkNull = (value, isErr) => {
+    if(!value){
+        isErr.value = true
+    }
+  }
+  return{ checkNull }
+}
+
+const loginToast = () => {
+  Toast.loading({
+    message: "加载中...",
+    forbidClick: true,
+  });
+}
+
+export default {
+  setup() {
+    const { checkNull } = doVerify();
+    /* const store = useStore();  */
+    const router = useRouter();
+    const userinfo = reactive({
+      username: "",
+      password: ""
+    });
+    let unfillAccount = ref(false);
+    let unfillPassword = ref(false);
+    
+    watch(userinfo.username, (newVal) => {
+      console.log(111)
+      if(newVal){
+        console.log(22)
+        unfillAccount.value = false
+      }
+    }, {
+      deep: true // name是一个对象，需要进行深度监听
+    });
+
+    /* watch(userinfo.username, (newVal) => {
+      if(newVal){
+        unfillAccount.value = false
+      }
+    }); */
+    const handleLogin = () => {
+      checkNull(userinfo.username, unfillAccount)
+      checkNull(userinfo.password, unfillPassword )
+      /* store.dispatch("user/handleLogin", userinfo);  */
+    };
+    //立即注册
+    const goRegister = () =>{
+      loginToast();
+      setTimeout(() => {
+        router.push({ name: "register" });
+        Toast.clear();
+      }, 500);
+    };
+    //忘记密码
+    const goRetrieve = () =>{
+      loginToast();
+      setTimeout(() => {
+        router.push({ name: "retrieve" });
+        Toast.clear();
+      }, 500);
+    };
+    
+    return {
+      checkNull,
+      userinfo,
+      unfillAccount,
+      unfillPassword,
+      handleLogin,
+      goRegister,
+      goRetrieve
+    }
+  }
+
+
+
+}
+</script>
+
+<style lang="less">
+@import "../../assets/css/SignFlow.less";
+body {
+  height: 100%;
+}
+</style>>
+
+
