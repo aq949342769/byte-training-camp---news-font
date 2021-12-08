@@ -4,7 +4,9 @@ import {
   getLoveNewsCateList,
   getNewsList,
   getNewsDetailList,
+  postNewsCateLikes,
   postNewsLikes,
+  postNewsCollect,
 } from "../../network/api/news.js";
 
 export const news = {
@@ -52,7 +54,9 @@ export const news = {
     active: 0,
     love: false,
     newsList: [],
-    newsDetail: {},
+    newsDetail: {
+      is_likes: false,
+    },
   }),
   getters: {},
   mutations: {
@@ -78,7 +82,7 @@ export const news = {
     },
     changeNewsList(state, newData) {
       newData.forEach((news) => {
-        const date = new Date(news.publish_time);
+        const date = new Date(Number(news.publish_time));
         const Y = date.getFullYear() + "年";
         const M =
           (date.getMonth() + 1 < 10
@@ -91,6 +95,15 @@ export const news = {
     },
     changeNewsDetail(state, newData) {
       state.newsDetail = newData;
+    },
+    changeNewsLikes(state, newData) {
+      state.newsDetail.is_likes = newData;
+      state.newsDetail.like_count = state.newsDetail.is_likes
+        ? state.newsDetail.like_count + 1
+        : state.newsDetail.like_count - 1;
+    },
+    changeNewsCollect(state, newData) {
+      state.newsDetail.is_favourites = newData;
     },
   },
   actions: {
@@ -132,19 +145,51 @@ export const news = {
         });
     },
     // 关注频道
-    async postNewsLikes(ctx) {
+    async postNewsCateLikes(ctx) {
       const index = ctx.state.active;
       const is_love = ctx.state.love;
       const newsCateList = ctx.state.newsCateList;
       const channel = toRaw(newsCateList)[index].channel;
       let method = is_love ? "delete" : "post";
-      await postNewsLikes(channel, method)
+      await postNewsCateLikes(channel, method)
         .then((res) => {
           if (res.code === 0) {
-            ctx.commit("changeLoveDirect");
-            Toast.success("设置成功")
+            ctx.dispatch("getLoveCateList").then(() => {
+              ctx.commit("changeLoveDirect");
+              Toast.success("设置成功");
+            });
           } else {
             Toast(res.msg);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    // 点赞（取消）新闻
+    async postNewsLikes(ctx, [id, method]) {
+      await postNewsLikes(id, method)
+        .then((res) => {
+          if (res.code === 0) {
+            const is_likes = method === "post" ? true : false;
+            ctx.commit("changeNewsLikes", is_likes);
+          } else {
+            Toast.fail(res.msg);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    // 收藏（取消）新闻
+    async postNewsCollect(ctx, [id, method]) {
+      await postNewsCollect(id, method)
+        .then((res) => {
+          if (res.code === 0) {
+            const is_favourites = method === "post" ? true : false;
+            ctx.commit("changeNewsCollect", is_favourites);
+          } else {
+            Toast.fail(res.msg);
           }
         })
         .catch((err) => {

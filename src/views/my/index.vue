@@ -2,19 +2,19 @@
   <van-nav-bar
     title="个人中心"
     left-arrow
-    @click-left="$router.back()"
+    @click-left="$router.push({ name: 'home' })"
     @click-right="$router.replace('setting')"
-    safe-area-inset-top="true"
+    safe-area-inset-top
     class="nav"
-    >
+  >
     <template #right>
-      <van-icon name="setting-o" size="20"/>
+      <van-icon name="setting-o" size="20" />
     </template>
   </van-nav-bar>
   <div id="user_wrapper">
     <div id="pic"></div>
-    <div id="nick_name">xyd</div>
-    <div id="email">xxxxxxxxxxxx@qq.com</div>
+    <div id="nick_name">{{ userInfo.nick_name }}</div>
+    <div id="email">{{ userInfo.email }}</div>
   </div>
 
   <van-cell-group class="top">
@@ -32,10 +32,28 @@
 </template>
 
 <script>
-export default {};
+import { computed } from "vue";
+import { useStore } from "vuex";
+const userHttpEffect = () => {
+  const store = useStore();
+  store.dispatch("Ac_getUserInfo");
+  store.dispatch("Ac_getUserSetting");
+  const userInfo = computed(() => store.state.user.userInfo);
+  return { userInfo };
+};
+export default {
+  setup() {
+    const { userInfo } = userHttpEffect();
+    return { userInfo };
+  },
+};
 </script>
 
 <style lang="less" scoped>
+.nav {
+  position: sticky;
+  top: 0;
+}
 #user_wrapper {
   display: flex;
   flex-direction: column;
