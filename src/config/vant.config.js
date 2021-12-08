@@ -18,7 +18,8 @@ import {
   Divider,
   Tabbar,
   TabbarItem,
-  Dialog
+  Dialog,
+  ShareSheet
 } from "vant";
 const components = [
   Button,
@@ -40,7 +41,8 @@ const components = [
   Divider,
   Tabbar,
   TabbarItem,
-  Dialog
+  Dialog,
+  ShareSheet
 ];
 
 export function vant(app) {

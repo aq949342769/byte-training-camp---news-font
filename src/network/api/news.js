@@ -2,7 +2,7 @@ import { request } from "../request";
 
 export function getLoveNewsCateList() {
   return request({
-    url: "/v1/news/channel/likes",
+    url: "/v1/user/channels",
   });
 }
 
@@ -22,7 +22,7 @@ export function postNewsLikes(channel,method) {
   return request({
     url: `/v1/news/channel/likes`,
     method: method,
-    param: {
+    data: {
       channel,
     },
   });
