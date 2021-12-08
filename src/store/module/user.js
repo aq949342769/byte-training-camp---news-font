@@ -1,12 +1,14 @@
 import {
   getUserInfo,
-  getUserSetting
+  getUserSetting,
+
+
 } from '../../network/api/my';
 export const user = {
   state: () => ({
     userInfo: {
-      nick_name:'',
-      emial:''
+      nick_name: '',
+      emial: ''
     },
     userSetting: {}
   }),
@@ -20,16 +22,16 @@ export const user = {
     }
   },
   actions: {
-    async Ac_getUserInfo(ctx){
+    async Ac_getUserInfo(ctx) {
       await getUserInfo().then((result) => {
-        ctx.commit("Mu_getUserInfo",result.data)
+        ctx.commit("Mu_getUserInfo", result.data)
       }).catch((err) => {
         console.log(err);
       });
     },
-    async Ac_getUserSetting(ctx){
+    async Ac_getUserSetting(ctx) {
       await getUserSetting().then((result) => {
-        ctx.commit("Mu_getUserSetting",result.data)
+        ctx.commit("Mu_getUserSetting", result.data)
       }).catch((err) => {
         console.log(err);
       });
