@@ -1,7 +1,11 @@
 <template>
-  <!-- 逻辑未写 -->
-  <van-tabbar v-model="active" class="wrap">
-    <van-field v-model="comment" placeholder="评论框" class="wrap__comment" />
+  <van-tabbar class="wrap">
+    <van-field
+      v-model="comment"
+      placeholder="评论框"
+      class="wrap__comment"
+      @keyup.enter="addComment"
+    />
     <div class="wrap__icon">
       <div class="wrap__icon__item" @click="toGood">
         <van-icon name="good-job" size="23" color="#eb4d4b" v-if="is_likes" />
@@ -21,7 +25,8 @@ import { computed, ref } from "vue";
 import { useStore } from "vuex";
 
 //喜爱相关
-const useLikesEffect = (props, store) => {
+const useLikesEffect = (props) => {
+  const store = useStore();
   const is_likes = computed(() => props.newsDetail.is_likes);
   const toGood = () => {
     const method = is_likes.value ? "delete" : "post";
@@ -31,7 +36,8 @@ const useLikesEffect = (props, store) => {
 };
 
 //收藏相关
-const useCollectEffect = (props, store) => {
+const useCollectEffect = (props) => {
+  const store = useStore();
   const is_favourites = computed(() => props.newsDetail.is_favourites);
   const toCollect = () => {
     const method = is_favourites.value ? "delete" : "post";
@@ -40,15 +46,27 @@ const useCollectEffect = (props, store) => {
   return { is_favourites, toCollect };
 };
 
+// 写评论
+const useCommentEffect = (props) => {
+  const store = useStore();
+  const comment = ref("");
+  const addComment = () => {
+    store.dispatch("news/addComment", {
+      news_id: props.newsDetail.id,
+      reply_comment_id: null,
+      content: comment.value,
+    });
+  };
+  return { comment, addComment };
+};
+
 export default {
   props: ["newsDetail"],
   setup(props) {
-    const active = ref(0);
-    const comment = ref("");
-    const store = useStore();
-    const { is_likes, toGood } = useLikesEffect(props, store);
-    const { is_favourites, toCollect } = useCollectEffect(props, store);
-    return { active, comment, is_likes, toGood, is_favourites, toCollect };
+    const { is_likes, toGood } = useLikesEffect(props);
+    const { is_favourites, toCollect } = useCollectEffect(props);
+    const { comment, addComment } = useCommentEffect(props);
+    return { is_likes, toGood, is_favourites, toCollect, comment, addComment };
   },
 };
 </script>
