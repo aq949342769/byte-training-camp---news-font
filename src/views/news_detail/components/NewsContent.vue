@@ -1,15 +1,23 @@
 <template>
   <div class="detail-wrap">
     <div class="detail-wrap__title">{{ newsDetail.title }}</div>
-    <div class="detail-wrap__time">{{ newsDetail.publish_time }}</div>
+    <div class="detail-wrap__time">
+      {{ date }}
+    </div>
     <div class="detail-wrap__content" v-html="newsDetail.content"></div>
   </div>
 </template>
 
 <script>
+import moment from "moment";
+import { ref } from "vue";
 export default {
   props: ["newsDetail"],
-  setup() {},
+  setup(props) {
+    moment.locale("zh-cn");
+    const date = ref(moment(props.newsDetail.publish_time).format("ll"));
+    return { date };
+  },
 };
 </script>
 
@@ -48,7 +56,7 @@ export default {
     margin: 10px 0 20px 0;
     line-height: 1.71;
     br {
-    line-height: 0px;
+      line-height: 0px;
     }
   }
   .pgc-h-arrow-right {
@@ -57,11 +65,12 @@ export default {
   .pgc-img {
     margin: 18px 0;
   }
-  img,video {
-      max-width: 100%;
-      display: block;
-      border-radius: 4px;
-      margin: 0 auto 8px;
-    }
+  img,
+  video {
+    max-width: 100%;
+    display: block;
+    border-radius: 4px;
+    margin: 0 auto 8px;
+  }
 }
 </style>

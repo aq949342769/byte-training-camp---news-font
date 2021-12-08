@@ -91,6 +91,6 @@ export default {
 
 <style>
 .van-nav-bar__title {
-  font-weight: bold;
+  font-weight: bold !important;
 }
 </style>
