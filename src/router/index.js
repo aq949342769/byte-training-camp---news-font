@@ -10,6 +10,9 @@ import CommentDetail from "../views/comment_detail/index.vue";
 import My from "../views/my/index.vue";
 import Setting from "../views/setting/index.vue";
 import Notfind from "../views/notfind/index.vue";
+import MyFavNews from '../views/my_fav_news/index.vue';
+import MyThumbs from '../views/my_thumbs/index.vue';
+import MySubscribe from '../views/my_subscribe/index.vue';
 
 const routes = [
   { path: "/:pathMatch(.*)", name: "404", component: Notfind },
@@ -59,6 +62,19 @@ const routes = [
     path: "/setting",
     name: "setting",
     component: Setting,
+  },
+  {
+    path: "/my_fav_news",
+    name: "MyFavNews",
+    component: MyFavNews,
+  },{
+    path: "/my_subscribe",
+    name: "MySubscribe",
+    component: MySubscribe,
+  },{
+    path: "/my_thumbs",
+    name: "MyThumbs",
+    component: MyThumbs,
   },
 ];
 
