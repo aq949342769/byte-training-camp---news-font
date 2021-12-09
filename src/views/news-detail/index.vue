@@ -7,10 +7,14 @@
     </van-nav-bar>
   </div>
   <!-- 新闻区 -->
-  <NewsContent :newsDetail="newsDetail" />
-  <van-divider>正文结束</van-divider>
-  <!-- 评论区 -->
-  <NewsComment />
+  <van-pull-refresh v-model="loading" @refresh="onRefresh">
+    <NewsContent :newsDetail="newsDetail" />
+    <van-divider>正文结束</van-divider>
+    <!-- 评论区 -->
+    <div class="comment">
+      <NewsComment />
+    </div>
+  </van-pull-refresh>
   <!-- footer -->
   <NewsOperate :newsDetail="newsDetail" />
   <van-share-sheet
@@ -54,6 +58,13 @@ export default {
       Toast(option.name);
       showShare.value = false;
     };
+    const loading = ref(false);
+    const onRefresh = () => {
+      setTimeout(() => {
+        Toast("刷新成功");
+        loading.value = false;
+      }, 1000);
+    };
 
     onMounted(() => {
       const id = route.query.id;
@@ -65,6 +76,8 @@ export default {
       options,
       onSelect,
       showShare,
+      loading,
+      onRefresh,
     };
   },
 };
@@ -76,16 +89,8 @@ export default {
   top: 0px;
   z-index: 1;
 }
-.recomment {
-  padding-bottom: 50px;
-  &__title {
-    font-size: 20px;
-    font-weight: 500;
-    text-align: center;
-    margin-top: 10px;
-    padding: 10px;
-    letter-spacing: 2px;
-  }
+.comment {
+  padding-bottom: 60px;
 }
 </style>
 

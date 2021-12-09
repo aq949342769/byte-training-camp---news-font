@@ -6,7 +6,7 @@ export function request(config) {
   // 1 创建实例
   const instance = axios.create({
     baseURL: "https://dc-news-api.kakkk.net/api",
-    timeout: 5000,
+    // timeout: 5000,
     headers: {
       "Content-Type": "application/json",
       "Authorization": token

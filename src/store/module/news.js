@@ -93,6 +93,19 @@ export const news = {
       });
       state.newsList = newData;
     },
+    addNewsList(state, newData) {
+      newData.forEach((news) => {
+        const date = new Date(Number(news.publish_time));
+        const Y = date.getFullYear() + "年";
+        const M =
+          (date.getMonth() + 1 < 10
+            ? "0" + (date.getMonth() + 1)
+            : date.getMonth() + 1) + "月";
+        const D = date.getDate() + "日";
+        news.publish_time = Y + M + D;
+      });
+      state.newsList = [...toRaw(state.newsList),...newData]
+    },
     changeNewsDetail(state, newData) {
       state.newsDetail = newData;
     },
@@ -128,6 +141,20 @@ export const news = {
             ctx.commit("changeNewsList", res.data);
           } else {
             ctx.commit("changeNewsList", []);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    async addNewsList(ctx, index) {
+      const channel = toRaw(ctx.state.newsCateList)[index].channel;
+      await getNewsList(channel, 10)
+        .then((res) => {
+          if (res.data) {
+            ctx.commit("addNewsList", res.data);
+          } else {
+            ctx.commit("addNewsList", []);
           }
         })
         .catch((err) => {
