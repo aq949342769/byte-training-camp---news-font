@@ -1,8 +1,6 @@
 .comment-item , .reply-item{
   font-size: 13px;
   & > div:first-child{
-    padding-bottom: 10px;
-    border-bottom: 0.5px solid #EDEDED;
     display:flex;
   }
 }
@@ -29,17 +27,24 @@
     width: 60vw;
     a {
       vertical-align: middle;
-      color: #0000AA;
     }
   }
   .text {
     display: block;
     margin-top: 12px;
     line-height: 18px;
+    margin-bottom: 5px;
   }
+  .showreply_btn {
+    color: #0000AA;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+  }
+  
 }
 .toolbox {
-  color: #D4D4D4;
   float: right;
   > span {
     margin-left: 5px;

@@ -31,6 +31,10 @@ export const user = {
       state.isLogin = flag
     },
 
+    logout(state){
+      state.isLogin = false 
+    },
+
     Mu_getUserInfo(state, userInfo) {
       state.userInfo = userInfo;
     },
@@ -48,7 +52,6 @@ export const user = {
         .then((res) => {
           console.log(username, password)
           console.log(res)
-          
           if (res.code === 0) {
             ctx.commit("userStatus", true); //保存登录状态
             Toast.success("登录成功")
@@ -62,6 +65,8 @@ export const user = {
         })
         .catch((err) => {
           Toast.fail('登陆失败');
+          ctx.commit('logout');
+
           console.log(err);
         });
     },

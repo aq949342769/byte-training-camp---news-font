@@ -14,7 +14,7 @@
         <span>已有账号？</span>
         <button type="button" class="Button Register_goLogin Button--plain" @click="goLogin">立即登录</button>
       </div>
-      <button type="submit" class="Button RegistBox_submitButton Button--yellow" @click="handleRegister">注册</button>
+      <van-button :style="{height:'30px',color:'black','border-radius': '10px','border-color':'transparent'}" size="large" round type="info" color="yellow" @click="handleRegister">注册</van-button>
     </div>
   </div>
 </div>
@@ -94,9 +94,12 @@ export default {
       let res3 = checkNull(userinfo.password, unfillPassword);
       let res4 = checkNull(userinfo.password_c, unfillPassword_c);
       let res5 = checkPassword(userinfo.password,userinfo.password_c)
+      const reg = /^[0-9a-zA-Z_.-]+[@][0-9a-zA-Z_.-]+([.][a-zA-Z]+){1,2}$/;
       if(res1&&res2&&res3&&res4){
         if(!res5){
           Notify({ type: 'warning', message: '密码输入不一致，请仔细检查' });
+        }else if(!reg.test(userinfo.email)){
+          Notify({ type: 'warning', message: '邮箱格式不正确，请仔细检查' });
         }else{
           store.dispatch("user/handleRegister", userinfo);
         registerToast(3000);

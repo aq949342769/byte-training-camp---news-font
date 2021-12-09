@@ -1,0 +1,65 @@
+.comment-item,
+.reply-item {
+  font-size: 13px;
+}
+.comment-item > div:first-child,
+.reply-item > div:first-child {
+  display: flex;
+}
+.user_avata {
+  width: 23px;
+  height: 23px;
+  transform: translate(0px, 0px);
+}
+.user_avata .avatar_img {
+  height: 100%;
+  width: 100%;
+  border: none;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+.content {
+  width: 80vw;
+  margin-left: 25px;
+  margin-top: 16px;
+  letter-spacing: 1px;
+}
+.content .user {
+  width: 60vw;
+}
+.content .user a {
+  vertical-align: middle;
+}
+.content .text {
+  display: block;
+  margin-top: 12px;
+  line-height: 18px;
+  margin-bottom: 5px;
+}
+.content .showreply_btn {
+  color: #0000AA;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+.toolbox {
+  float: right;
+}
+.toolbox > span {
+  margin-left: 5px;
+}
+.info {
+  color: #D4D4D4;
+  padding-left: 10px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+.info > span {
+  margin-right: 20px;
+}
+.info > span > span {
+  margin-right: 5px;
+}

@@ -5,55 +5,64 @@
           <a href="">
               <img
               class="avatar_img" 
-              :src = 'avatar_url' />
+              :src = 'user_avatar' />
           </a>
         </div>
         <div class="content">
           <span class="user">
-            <a href="">{{username}}</a>
+            <a href="">{{user_nickname}}</a>
           </span>
           <span class="toolbox">
-          <span class="like">
-            <van-icon class-prefix="my-icon" name="good" />
-            <span>{{like_amout}}</span>
-          </span> 
-          <span class="unlike">
-            <van-icon class-prefix="my-icon" name="bad" />
-            <span>{{unlike_amout}}</span>
-          </span>
-          <span class="reply">
-            <van-icon class-prefix="my-icon" name="comments" />
-            <span>{{reply_amout}}</span>
-          </span>
+            <span class="like">
+              <van-icon class-prefix="my-icon" name="good" v-show="likes!=1"/>
+              <van-icon class-prefix="my-icon" color="red" name="good-act" v-show="likes==1"/>
+              <span>{{like_count}}</span>
+            </span> 
+            <span class="dislike">
+              <van-icon class-prefix="my-icon" name="bad" v-show="likes!=2"/>
+              <van-icon class-prefix="my-icon" color="red" name="bad-act" v-show="likes==2"/>
+              <span>{{dislike_count}}</span>
+            </span>
+            
         </span>
           <p class="text">
-            <span>回复{{reply_object}}:</span>
-            {{comment_content}}
+            {{content}}
           </p>
+          <button class="showreply_btn" @click="showReply">{{}}条回复 ></button>
+          <van-popup v-model="show" position="bottom">内容</van-popup>
         </div>
       </div>
     </div>
 </template>
 
 <script>
+import { ref } from 'vue';
 export default {
-    /* props: ['avatar_url', 'username', 'comment_content', like_amout, reply_amout, unlike_amout, reply_object] */
+    /* props: ['user_avatar', 'user_nickname', 'content', like_count, reply_amout, dislike_count, reply_object] */
   setup() {
-    const avatar_url = 'https://s3.bmp.ovh/imgs/2021/12/928270c4cb54f1f7.jpg';
-    const username = '回复用户昵称';
-    const comment_content = '这是一条用户B发出来的对A的某一新闻评论的回复展示嗯嗯就是这样。';
-    let like_amout = 9;
+    const user_avatar = 'https://s3.bmp.ovh/imgs/2021/12/928270c4cb54f1f7.jpg';
+    const user_nickname = '评论用户昵称';
+    const content = '这是一条用户B发出来的对A的某一新闻评论的回复展示嗯嗯就是这样。';
+    let like_count = 9;
     let reply_amout = 10;
-    let unlike_amout = 0;
+    let dislike_count = 0;
     let reply_object = 'xx';
+    let likes = 2;
+    let show = ref(true);
+    const showReply = () => {
+      show.value = true
+    };
     return{
-      avatar_url,
-      username,
-      comment_content,
-      like_amout,
+      user_avatar,
+      user_nickname,
+      content,
+      like_count,
       reply_amout,
-      unlike_amout,
+      dislike_count,
       reply_object,
+      likes,
+      show,
+      showReply
     };
   },
 }

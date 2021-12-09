@@ -5,65 +5,37 @@
     <div class="ResetBox">
       <div class="ResetBox_title">重置密码</div>
       <div class="SignFlow ResetBox_content">
-        <div class="">
-          <input type="password" class="SignFlow_password" placeholder="请输入新密码" v-model="password1" >
-        </div>
-        <div class="">
-          <input type="password" class="SignFlow_password" placeholder="请确定新密码" v-model="password2" >
-        </div>
+        <van-field v-model="userinfo.password" type="password"  placeholder="请输入密码" :error="unfillPassword" />
+        <van-field v-model="userinfo.password_c" type="password"  placeholder="请再次输入密码" :error="unfillPassword_c" />                    
       </div>
-      <button type="submit" class="Button ResetBox_submitButton Button--yellow">确定</button>
+      <van-button :style="{height:'30px',color:'black','border-radius': '10px','border-color':'transparent'}" size="large" round type="info" color="yellow">确定</van-button>
     </div>
   </div>
 </div>
 </template>
 
 <script>
+import { reactive } from "vue";
+
 export default {
   setup(){
-    
+    const userinfo = reactive({
+      password: "",
+      password_c: ""
+    });
+    return{
+      userinfo
+    }
   }
 
 }
 </script>
 
 <style lang="less">
-.ResetBox{
-  &_title {
-    font-size: 22px;
-    font-weight: 600;
-    margin-bottom: 20px;
-  }
-  .SignFlow {
-    width: 75vw;
-    line-height: 23px;
-    font-size: 14px;
-    div {
-      border:1px solid gray;
-      border-radius: 8px;
-      margin-top: 15px;
-      &:hover{
-        border-color: blue;
-      }
-    }
-    input {
-      width: 90%;
-      border: none;
-      margin: 2px;
-      padding: 0 5px;
-    }
-  }
+@import "../../assets/css/SignFlow.less";
+body {
+  height: 100%;
 }
-.Button {
-  display: inline-block;
-  border: 1px solid transparent;
-  border-radius: 10px;
-  text-align: center;
-  height: 30px;
-  cursor: pointer;
-}
-
-
 </style>>
 
 
