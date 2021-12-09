@@ -1,5 +1,6 @@
 import { toRaw } from "vue";
 import { Toast } from "vant";
+import moment from "moment";
 import {
   getLoveNewsCateList,
   getNewsList,
@@ -82,29 +83,21 @@ export const news = {
     },
     changeNewsList(state, newData) {
       newData.forEach((news) => {
-        const date = new Date(Number(news.publish_time));
-        const Y = date.getFullYear() + "年";
-        const M =
-          (date.getMonth() + 1 < 10
-            ? "0" + (date.getMonth() + 1)
-            : date.getMonth() + 1) + "月";
-        const D = date.getDate() + "日";
-        news.publish_time = Y + M + D;
+        moment.locale("zh-cn");
+        news.publish_time = moment(Number(news.publish_time) * 1000).format(
+          "ll"
+        );
       });
       state.newsList = newData;
     },
     addNewsList(state, newData) {
       newData.forEach((news) => {
-        const date = new Date(Number(news.publish_time));
-        const Y = date.getFullYear() + "年";
-        const M =
-          (date.getMonth() + 1 < 10
-            ? "0" + (date.getMonth() + 1)
-            : date.getMonth() + 1) + "月";
-        const D = date.getDate() + "日";
-        news.publish_time = Y + M + D;
+        moment.locale("zh-cn");
+        news.publish_time = moment(Number(news.publish_time) * 1000).format(
+          "ll"
+        );
       });
-      state.newsList = [...toRaw(state.newsList),...newData]
+      state.newsList = [...toRaw(state.newsList), ...newData];
     },
     changeNewsDetail(state, newData) {
       state.newsDetail = newData;
