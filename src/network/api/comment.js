@@ -11,3 +11,10 @@ export function addComment(data) {
     },
   });
 }
+
+// 查看新闻的评论
+export function getCommentsList(id) {
+  return request({
+    url: `/v1/news/${id}/comments`,
+  });
+}

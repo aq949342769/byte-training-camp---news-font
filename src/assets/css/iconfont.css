@@ -1,8 +1,8 @@
 @font-face {
   font-family: "my-icon"; /* Project id 2989498 */
-  src: url('//at.alicdn.com/t/font_2989498_gap6q6kpd1i.woff2?t=1638763447829') format('woff2'),
-       url('//at.alicdn.com/t/font_2989498_gap6q6kpd1i.woff?t=1638763447829') format('woff'),
-       url('//at.alicdn.com/t/font_2989498_gap6q6kpd1i.ttf?t=1638763447829') format('truetype');
+  src: url('//at.alicdn.com/t/font_2989498_m7rs0o8yb5s.woff2?t=1639085169534') format('woff2'),
+       url('//at.alicdn.com/t/font_2989498_m7rs0o8yb5s.woff?t=1639085169534') format('woff'),
+       url('//at.alicdn.com/t/font_2989498_m7rs0o8yb5s.ttf?t=1639085169534') format('truetype');
 }
 
 .my-icon {
@@ -12,11 +12,10 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.my-icon:hover{
-    color: red;
-    cursor: pointer;
-}
 
+.my-icon-sort:before {
+  content: "\e609";
+}
 .my-icon-bad:before {
   content: "\e745";
 }
@@ -40,3 +39,5 @@
 .my-icon-comments-act:before {
   content: "\e7aa";
 }
+
+

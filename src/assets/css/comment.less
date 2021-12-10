@@ -1,15 +1,15 @@
-.comment-item , .reply-item{
-  font-size: 13px;
+.comment-item , .reply-item{ 
+  padding-right: 0;
+  display:flex;
   & > div:first-child{
-    padding-bottom: 10px;
-    border-bottom: 0.5px solid #EDEDED;
     display:flex;
   }
 }
-.user_avata{
+.user_avatar{
   width: 23px;
   height:23px;
   transform: translate(0px, 0px);
+  margin-right: 0;
   .avatar_img{
     height: 100%;
     width: 100%;
@@ -21,39 +21,48 @@
   }
 }
 .content{
-  width: 80vw;
-  margin-left: 25px;
-  margin-top: 16px;
+  width: 83%;
+  margin-left: 20px;
+  margin-right: 10px;
+  margin-top: 8px;
+  padding-right: 3px;
   letter-spacing: 1px;
-  .user{
-    width: 60vw;
-    a {
-      vertical-align: middle;
-      color: #0000AA;
-    }
+  div:first-child{
+    height: 20px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    padding: 0;
   }
-  .text {
-    display: block;
-    margin-top: 12px;
-    line-height: 18px;
+  .nickname{
+    line-height: 20px;
+    font-size: 13px;
   }
-}
-.toolbox {
-  color: #D4D4D4;
-  float: right;
-  > span {
-    margin-left: 5px;
-  }
-}
-.info {
-  color: #D4D4D4;
-  padding-left: 10px;
-  margin-top: 15px;
-  margin-bottom: 10px;
-  & > span{
-    margin-right: 20px; 
-    & > span{
+  .toolbox {
+    display: inline-block;
+    line-height: 20px;
+    font-size: 10px;
+    
+    span {
       margin-right: 5px;
     }
+}
+  
+  .text {
+    width: 98%;
+    display: block;
+    margin-top: 10px;
+    line-height: 18px;
+    margin-bottom: 5px;
+    font-size: 13px;
+    
   }
+  .showReply {
+    color: #0000AA;
+    padding: 0;
+    font-size: 2px;
+    cursor: pointer;
+    letter-spacing: normal;
+  }
+  
 }

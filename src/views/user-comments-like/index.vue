@@ -1,5 +1,5 @@
 <template>
-  <nav-bar title="我的关注"></nav-bar>
+  <nav-bar title="点赞评论"></nav-bar>
 </template>
 <script>
 import NavBar from '../../components/common/NavBar.vue';

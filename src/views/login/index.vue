@@ -16,7 +16,7 @@
         <button type="button" class="Button Login_goRegist Button--plain" @click="goRegister">立即注册</button>
         <button type="button" class="Button Login_forgetPassword Button--plain" @click="goRetrieve">忘记密码</button>
       </div>
-      <button type="submit" class="Button LoginBox_submitButton Button--yellow" @click="handleLogin">登录</button>
+      <van-button :style="{height:'30px',color:'black','border-radius': '10px','border-color':'transparent'}" size="large" round type="info" color="yellow" @click="handleLogin">登录</van-button>
     </div>
   </div>
 </div>

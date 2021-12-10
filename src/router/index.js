@@ -11,8 +11,8 @@ import My from "../views/my/index.vue";
 import Setting from "../views/setting/index.vue";
 import Notfind from "../views/notfind/index.vue";
 import MyCollect from "../views/user-collect/index.vue";
-import MyLikes from "../views/user-likes/index.vue";
-import MyChannels from "../views/user-channels/index.vue";
+import MyNewsLike from "../views/user-news-likes/index.vue";
+import MyCommentsLike from "../views/user-comments-like/index.vue";
 
 const routes = [
   { path: "/:pathMatch(.*)", name: "404", component: Notfind },
@@ -69,14 +69,14 @@ const routes = [
     component: MyCollect,
   },
   {
-    path: "/channels",
-    name: "channels",
-    component: MyChannels,
+    path: "/comments-like",
+    name: "commentsLike",
+    component: MyCommentsLike,
   },
   {
-    path: "/likes",
-    name: "likes",
-    component: MyLikes,
+    path: "/news-like",
+    name: "newsLike",
+    component: MyNewsLike,
   },
 ];
 
