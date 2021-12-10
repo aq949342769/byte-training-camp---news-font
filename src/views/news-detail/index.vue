@@ -34,6 +34,35 @@ import NewsComment from "./components/NewsComment.vue";
 import NewsOperate from "./components/NewsOperate.vue";
 import { Toast } from "vant";
 
+// 分享面板
+const useShareSheetEffect = () => {
+  const showShare = ref(false);
+  const options = [
+    { name: "微信", icon: "wechat" },
+    { name: "微博", icon: "weibo" },
+    { name: "复制链接", icon: "link" },
+    { name: "分享海报", icon: "poster" },
+    { name: "二维码", icon: "qrcode" },
+  ];
+  const onSelect = (option) => {
+    Toast(option.name);
+    showShare.value = false;
+  };
+  return { showShare, options, onSelect };
+};
+
+// 下拉刷新
+const usePullRefreshEffect = () => {
+  const loading = ref(false);
+  const onRefresh = () => {
+    setTimeout(() => {
+      Toast("刷新成功");
+      loading.value = false;
+    }, 1000);
+  };
+  return { loading, onRefresh };
+};
+
 export default {
   components: {
     NewsContent,
@@ -45,30 +74,11 @@ export default {
     const store = useStore();
     const onClickLeft = () => history.back();
     const newsDetail = computed(() => store.state.news.newsDetail);
-    const showShare = ref(false);
-    const options = [
-      { name: "微信", icon: "wechat" },
-      { name: "微博", icon: "weibo" },
-      { name: "复制链接", icon: "link" },
-      { name: "分享海报", icon: "poster" },
-      { name: "二维码", icon: "qrcode" },
-    ];
-
-    const onSelect = (option) => {
-      Toast(option.name);
-      showShare.value = false;
-    };
-    const loading = ref(false);
-    const onRefresh = () => {
-      setTimeout(() => {
-        Toast("刷新成功");
-        loading.value = false;
-      }, 1000);
-    };
+    const { showShare, options, onSelect } = useShareSheetEffect();
+    const { loading, onRefresh } = usePullRefreshEffect();
 
     onMounted(() => {
-      const id = route.query.id;
-      store.dispatch("news/getNewsDetailList", id);
+      store.dispatch("news/getNewsDetailList", route.query.id);
     });
     return {
       onClickLeft,
@@ -91,11 +101,5 @@ export default {
 }
 .comment {
   padding-bottom: 60px;
-}
-</style>
-
-<style>
-.van-nav-bar__title {
-  font-weight: bold !important;
 }
 </style>

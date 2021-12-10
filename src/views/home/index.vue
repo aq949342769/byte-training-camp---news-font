@@ -1,6 +1,6 @@
 <template>
   <div class="category">
-    <NavBar />
+    <NavBar @click="toTop" />
     <Category />
   </div>
   <van-pull-refresh v-model="loading" @refresh="onRefresh">
@@ -17,12 +17,48 @@
 </template>
 
 <script>
-import { computed, ref, toRaw } from "vue";
+import { ref, toRaw } from "vue";
 import { useStore } from "vuex";
 import NavBar from "./components/NavBar.vue";
 import Category from "./components/Category.vue";
 import Content from "../../components/news/index.vue";
 import { Toast } from "vant";
+
+// 下拉刷新，上拉加载
+const useReLoadingEffect = () => {
+  const store = useStore();
+  const loading = ref(false);
+  const isLoading = ref(false);
+  const finished = ref(false);
+  const onRefresh = () => {
+    setTimeout(() => {
+      store.dispatch("news/getNewsList", store.state.news.active);
+      Toast("刷新成功");
+      loading.value = false;
+    }, 1000);
+  };
+  const onLoad = async () => {
+    await store.dispatch("news/addNewsList", store.state.news.active);
+    isLoading.value = false;
+    if (toRaw(store.state.news.newsList).length >= 200) {
+      finished.value = true;
+    }
+  };
+  return { loading, isLoading, onRefresh, finished, onLoad };
+};
+
+// 双击回到顶部
+const usetoTopEffect = () => {
+  const tochoutNum = ref(0);
+  const toTop = () => {
+    tochoutNum.value++
+    if(tochoutNum.value===2) {
+      window.scrollTo(0, 0);
+      tochoutNum.value = 0;
+    }
+  };
+  return { toTop };
+};
 
 export default {
   components: {
@@ -31,26 +67,10 @@ export default {
     Content,
   },
   setup() {
-    const store = useStore();
-    const index = computed(() => store.state.news.active);
-    const loading = ref(false);
-    const isLoading = ref(false);
-    const finished = ref(false);
-    const onRefresh = () => {
-      setTimeout(() => {
-        store.dispatch("news/getNewsList", index.value);
-        Toast("刷新成功");
-        loading.value = false;
-      }, 1000);
-    };
-    const onLoad = async () => {
-      await store.dispatch("news/addNewsList", store.state.news.active);
-      isLoading.value = false;
-      if (toRaw(store.state.news.newsList).length >= 200) {
-        finished.value = true;
-      }
-    };
-    return { loading, isLoading, onRefresh, finished, onLoad };
+    const { loading, isLoading, onRefresh, finished, onLoad } =
+      useReLoadingEffect();
+    const { toTop } = usetoTopEffect();
+    return { loading, isLoading, onRefresh, finished, onLoad, toTop };
   },
 };
 </script>
