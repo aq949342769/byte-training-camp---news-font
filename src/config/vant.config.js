@@ -52,6 +52,7 @@ const components = [
   ShareSheet,
   Uploader,
   Popup
+
 ];
 
 export function vant(app) {

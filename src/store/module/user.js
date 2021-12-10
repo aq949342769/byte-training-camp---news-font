@@ -1,11 +1,21 @@
-import { login, register } from "../../network/api/user.js";
-import { getUserInfo, getUserSetting } from "../../network/api/my";
+import {
+  login,
+  register
+} from "../../network/api/user.js";
+import {
+  getUserInfo,
+  getUserSetting
+} from "../../network/api/my";
 import {
   getUserCollectNewsList,
   getUserLikeNewsList,
 } from "../../network/api/user";
-import { toRaw } from "vue";
-import { Toast } from "vant";
+import {
+  toRaw
+} from "vue";
+import {
+  Toast
+} from "vant";
 import moment from "moment";
 
 export const user = {
@@ -22,7 +32,9 @@ export const user = {
       nick_name: "",
       emial: "",
     },
-    userSetting: {},
+    userSetting: {
+      darkTheme: false
+    },
     collectNewsList: [],
     likeNewsList: [],
   }),
@@ -55,11 +67,9 @@ export const user = {
       state.email = email;
       state.avatar = avatar;
     },
-
     logout(state){
       state.isLogin = false 
     },
-
     Mu_getUserInfo(state, userInfo) {
       state.userInfo = userInfo;
     },
@@ -114,12 +124,18 @@ export const user = {
       let password = userinfo.password;
       await login(username, password, method)
         .then((res) => {
-          console.log(username, password)
-          console.log(res)
+          console.log(username, password);
+          console.log(res);
           if (res.code === 0) {
             ctx.commit("userStatus", true); //保存登录状态
             Toast.success("登录成功");
-            let { id, user_name, nick_name, email, avatar } = res.data;
+            let {
+              id,
+              user_name,
+              nick_name,
+              email,
+              avatar
+            } = res.data;
             ctx.commit(
               "changUserInfo",
               id,
@@ -134,7 +150,7 @@ export const user = {
           }
         })
         .catch((err) => {
-          Toast.fail('登陆失败');
+          Toast.fail("登陆失败");
           console.log(err);
         });
     },

@@ -6,7 +6,7 @@
     :before-close="changeInfo"
     show-cancel-button
   >
-    <van-uploader />
+    <van-uploader id="setting_uploader" />
     <van-field v-model="nick_name" label="昵称" placeholder="请输入新的昵称" />
     <van-field v-model="email" label="电子邮箱" placeholder="请输入新的邮箱" />
   </van-dialog>
@@ -53,6 +53,13 @@ export default {
     };
     return { show, handleCellClick, nick_name, email, changeInfo };
   },
-  methods: {},
 };
 </script>
+<style lang="less">
+#setting_uploader {
+  width: 100%;
+  .van-uploader__wrapper {
+    justify-content: center;
+  }
+}
+</style>

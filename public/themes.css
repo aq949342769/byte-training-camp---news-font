@@ -1,0 +1,26 @@
+:root {
+    /* 白色字体颜色 */
+    --text: #ffffff !important;
+    /* 黑夜背景 */
+    --background: #1d1d23;
+    /* 一般按钮的背景颜色 */
+    --van-white:#1d1d23;
+    /* 黑夜分割线颜色 */
+    --van-gray-8:var(--text)
+}
+
+body {
+    background-color: var(--background) !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+small,
+a {
+    color: var(--text) !important;
+}
