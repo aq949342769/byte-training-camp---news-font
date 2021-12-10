@@ -21,7 +21,7 @@ import {
   Dialog,
   ShareSheet,
   Uploader,
-  Form 
+  Form,
 } from "vant";
 const components = [
   Button,
@@ -46,7 +46,7 @@ const components = [
   Dialog,
   ShareSheet,
   Uploader,
-  Form 
+  Form,
 ];
 
 export function vant(app) {

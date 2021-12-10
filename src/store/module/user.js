@@ -19,7 +19,9 @@ export const user = {
       nick_name: '',
       emial: ''
     },
-    userSetting: {}
+    userSetting: {
+      darkTheme:false
+    }
   }),
   getters: {
     //获取登录状态

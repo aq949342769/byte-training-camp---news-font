@@ -13,7 +13,11 @@
 
   <van-cell title="黑夜模式">
     <template #right-icon>
-      <van-switch v-model="checked" size="20px"></van-switch>
+      <van-switch
+        v-model="darkTheme"
+        size="20px"
+        @click="handleSwitch"
+      ></van-switch>
     </template>
   </van-cell>
   <van-cell
@@ -44,6 +48,7 @@ import { useStore } from "vuex";
 import { Toast } from "vant";
 import { updateUserInfo, uploadAvatar } from "../../network/api/my";
 import SettingCell from "./components/SettingCell.vue";
+import themeChanger from "../../theme";
 const useHttpEffect = () => {
   const store = useStore();
   const userInfo = reactive(store.state.user.userInfo);
@@ -53,7 +58,8 @@ const useHttpEffect = () => {
 export default {
   setup() {
     const { userInfo, userSetting } = useHttpEffect();
-    let checked = ref(false);
+    const store = useStore();
+    let darkTheme = ref(store.state.user.userSetting.darkTheme);
     let font_show = ref(false);
     const fontSize = [{ name: "大" }, { name: "中" }, { name: "小" }];
     let font_text = ref("中");
@@ -61,15 +67,19 @@ export default {
       font_text.value = item.name;
       Toast("您选择了 " + item.name + " 字体");
     };
-
+    const themeObj = new themeChanger();
     return {
       userInfo,
       userSetting,
       fontSize,
-      checked,
       font_show,
       font_select,
       font_text,
+      darkTheme,
+      handleSwitch() {
+        themeObj._darkThemeSwitch();
+        console.log(darkTheme);
+      },
     };
   },
   components: { SettingCell },
@@ -82,7 +92,7 @@ export default {
         .catch((err) => {
           console.log(err);
         });
-      uploadAvatar({file:"/Users/xiaoyidao/Desktop"})
+      uploadAvatar({ file: "/Users/xiaoyidao/Desktop" })
         .then((result) => {
           console.log(result);
         })

@@ -31,18 +31,19 @@
 </template>
 
 <script>
-import { computed } from "vue";
 import { useStore } from "vuex";
-const userHttpEffect = () => {
-  const store = useStore();
-  store.dispatch("user/Ac_getUserInfo");
-  store.dispatch("user/Ac_getUserSetting");
-  const userInfo = computed(() => store.state.user.userInfo);
-  return { userInfo };
-};
+import themeChanger from "../../theme";
 export default {
   setup() {
-    const { userInfo } = userHttpEffect();
+    const store = useStore();
+    store.dispatch("user/Ac_getUserInfo");
+    store.dispatch("user/Ac_getUserSetting");
+    const userInfo = store.state.user.userInfo;
+    const darkTheme = store.state.user.userSetting.darkTheme;
+    const themeChange = new themeChanger();
+    if (darkTheme) {
+      themeChange._addDarkTheme();
+    }
     return { userInfo };
   },
 };
@@ -57,11 +58,11 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 100px;
-  margin-bottom: 100px;
+  margin-top: 50px;
+  margin-bottom: 50px;
   #pic {
-    width: 50px;
-    height: 50px;
+    width: 100px;
+    height: 100px;
     background-image: url("../../assets/notfind.png");
     background-repeat: no-repeat;
     background-size: cover;
@@ -70,9 +71,11 @@ export default {
   }
   #nick_name {
     padding-top: 5px;
+    color: var(--van-text-color);
   }
   #email {
     padding-top: 5px;
+    color: var(--van-text-color);
   }
 }
 #exit {
@@ -81,7 +84,7 @@ export default {
 
 .center {
   padding-top: 10px;
-  background-color: #f0f1f2;
+  background-color: var(--van-gray-2);
   padding-bottom: 10px;
 }
 </style>
