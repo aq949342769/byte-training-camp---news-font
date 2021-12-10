@@ -55,14 +55,11 @@ export const user = {
       state.email = email;
       state.avatar = avatar;
     },
-<<<<<<< HEAD
 
     logout(state){
       state.isLogin = false 
     },
 
-=======
->>>>>>> d313812ea9ae82fa291bf7fc1de910f874c045e5
     Mu_getUserInfo(state, userInfo) {
       state.userInfo = userInfo;
     },
@@ -117,14 +114,8 @@ export const user = {
       let password = userinfo.password;
       await login(username, password, method)
         .then((res) => {
-<<<<<<< HEAD
           console.log(username, password)
           console.log(res)
-=======
-          console.log(username, password);
-          console.log(res);
-
->>>>>>> d313812ea9ae82fa291bf7fc1de910f874c045e5
           if (res.code === 0) {
             ctx.commit("userStatus", true); //保存登录状态
             Toast.success("登录成功");
@@ -143,13 +134,7 @@ export const user = {
           }
         })
         .catch((err) => {
-<<<<<<< HEAD
           Toast.fail('登陆失败');
-          ctx.commit('logout');
-
-=======
-          Toast.fail("登陆失败");
->>>>>>> d313812ea9ae82fa291bf7fc1de910f874c045e5
           console.log(err);
         });
     },
