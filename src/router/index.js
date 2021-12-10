@@ -10,9 +10,9 @@ import CommentDetail from "../views/comment-detail/index.vue";
 import My from "../views/my/index.vue";
 import Setting from "../views/setting/index.vue";
 import Notfind from "../views/notfind/index.vue";
-import MyFavNews from "../views/my-fav-news/index.vue";
-import MyThumbs from "../views/my-thumbs/index.vue";
-import MySubscribe from "../views/my-subscribe/index.vue";
+import MyCollect from "../views/user-collect/index.vue";
+import MyLikes from "../views/user-likes/index.vue";
+import MyChannels from "../views/user-channels/index.vue";
 
 const routes = [
   { path: "/:pathMatch(.*)", name: "404", component: Notfind },
@@ -64,19 +64,19 @@ const routes = [
     component: Setting,
   },
   {
-    path: "/my-fav-news",
-    name: "MyFavNews",
-    component: MyFavNews,
+    path: "/collect",
+    name: "collect",
+    component: MyCollect,
   },
   {
-    path: "/my-subscribe",
-    name: "MySubscribe",
-    component: MySubscribe,
+    path: "/channels",
+    name: "channels",
+    component: MyChannels,
   },
   {
-    path: "/my-thumbs",
-    name: "MyThumbs",
-    component: MyThumbs,
+    path: "/likes",
+    name: "likes",
+    component: MyLikes,
   },
 ];
 
