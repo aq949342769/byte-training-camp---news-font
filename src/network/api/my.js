@@ -18,7 +18,7 @@ export function updateUserInfo(data) {
   return request({
     method: "PUT",
     url: "/v1/user/info",
-    data: data
+    data
   });
 }
 //修改用户设置
@@ -26,6 +26,17 @@ export function updateUserSetting(data) {
   return request({
     method: "PUT",
     url: "/v1/user/setting",
-    data: data
+    data
+  });
+}
+//上传头像
+export function uploadAvatar(data) {
+  return request({
+    Headers: {
+      "Content-Type": "multipart/form-data"
+    },
+    method: "POST",
+    url: "/v1/user/avatar/upload",
+    data
   });
 }

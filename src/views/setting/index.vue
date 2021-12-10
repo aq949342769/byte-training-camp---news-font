@@ -24,7 +24,9 @@
   >
   </van-cell>
 
-  <van-button round type="primary" id="save_btn" >修改个人信息</van-button>
+  <van-button round type="primary" id="save_btn" @click="handleClick"
+    >修改个人信息</van-button
+  >
 
   <van-action-sheet
     v-model:show="font_show"
@@ -40,6 +42,7 @@
 import { reactive, ref } from "vue";
 import { useStore } from "vuex";
 import { Toast } from "vant";
+import { updateUserInfo, uploadAvatar } from "../../network/api/my";
 import SettingCell from "./components/SettingCell.vue";
 const useHttpEffect = () => {
   const store = useStore();
@@ -70,6 +73,24 @@ export default {
     };
   },
   components: { SettingCell },
+  methods: {
+    handleClick() {
+      updateUserInfo({ nick_name: "testname" })
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      uploadAvatar({file:"/Users/xiaoyidao/Desktop"})
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
 };
 </script>
 
