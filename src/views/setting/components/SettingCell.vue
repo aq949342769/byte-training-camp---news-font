@@ -28,8 +28,8 @@ export default {
   },
   setup() {
     let show = ref(false);
-    let nick_name = ref(null);
-    let email = ref(null);
+    let nick_name = ref("");
+    let email = ref("");
     const store = useStore();
     const handleCellClick = () => {
       show.value = !show.value;

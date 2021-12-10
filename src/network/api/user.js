@@ -23,3 +23,14 @@ export function register(username,email,password,method) {
   });
 }
 
+export function getUserCollectNewsList() {
+  return request({
+    url: `/v1/user/news/favorites?page=1&limit=10`,
+  });
+}
+
+export function getUserLikeNewsList() {
+  return request({
+    url: `/v1/user/news/likes?page=1&limit=10`,
+  });
+}

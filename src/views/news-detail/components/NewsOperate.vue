@@ -23,14 +23,20 @@
 <script>
 import { computed, ref } from "vue";
 import { useStore } from "vuex";
+import { Toast } from "vant";
 
 //喜爱相关
 const useLikesEffect = (props) => {
   const store = useStore();
   const is_likes = computed(() => props.newsDetail.is_likes);
-  const toGood = () => {
+  const toGood = async () => {
     const method = is_likes.value ? "delete" : "post";
-    store.dispatch("news/postNewsLikes", [props.newsDetail.id, method]);
+    await store.dispatch("news/postNewsLikes", [props.newsDetail.id, method]);
+    if (is_likes.value) {
+      Toast.success("点赞 ❥(^_-)");
+    } else {
+      Toast("取消点赞 ε=(´ο｀*)))");
+    }
   };
   return { is_likes, toGood };
 };
@@ -39,9 +45,10 @@ const useLikesEffect = (props) => {
 const useCollectEffect = (props) => {
   const store = useStore();
   const is_favourites = computed(() => props.newsDetail.is_favourites);
-  const toCollect = () => {
+  const toCollect = async () => {
     const method = is_favourites.value ? "delete" : "post";
-    store.dispatch("news/postNewsCollect", [props.newsDetail.id, method]);
+    await store.dispatch("news/postNewsCollect", [props.newsDetail.id, method]);
+    Toast.success("收藏成功");
   };
   return { is_favourites, toCollect };
 };

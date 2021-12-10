@@ -1,22 +1,22 @@
 <template>
   <div class="card__wrap">
-    <div class="card__wrap__title van-multi-ellipsis--l2">{{news.title}}</div>
+    <div class="card__wrap__title van-multi-ellipsis--l2">{{ news.title }}</div>
     <div class="card__wrap__img">
       <div class="card__wrap__img__item" v-for="item in news.media" :key="item">
-        <img :src="item"/>
+        <img :src="item" />
       </div>
     </div>
     <div class="card__wrap__subtitle">
       <!-- <div class="card__wrap__subtitle__item">新华社</div> -->
       <!-- <div class="card__wrap__subtitle__item">345评论</div> -->
-      <div class="card__wrap__subtitle__item">{{news.publish_time}} 发布</div>
+      <div class="card__wrap__subtitle__item">{{ news.publish_time }} 发布</div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props:['news']
+  props: ["news"],
 };
 </script>
 
@@ -25,6 +25,7 @@ export default {
   padding: 20px;
   border-bottom: 1px solid #f2f2f2;
   font-size: 14px;
+  line-height: 16px;
   &__img {
     display: flex;
     padding-top: 10px;
@@ -34,6 +35,9 @@ export default {
       img {
         width: 90%;
         height: 100%;
+        display: block;
+        border-radius: 2px;
+        margin: 0 auto 8px;
       }
     }
   }

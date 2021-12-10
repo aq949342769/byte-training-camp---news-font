@@ -23,6 +23,7 @@ export default {
   padding: 20px;
   border-bottom: 1px solid #f2f2f2;
   font-size: 14px;
+  line-height: 16px;
   &__video {
     width: 100%;
     text-align: center;

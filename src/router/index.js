@@ -5,14 +5,14 @@ import Login from "../views/login/index.vue";
 import Register from "../views/register/index.vue";
 import Reset from "../views/reset/index.vue";
 import Retrieve from "../views/retrieve/index.vue";
-import NewsDetail from "../views/news_detail/index.vue";
-import CommentDetail from "../views/comment_detail/index.vue";
+import NewsDetail from "../views/news-detail/index.vue";
+import CommentDetail from "../views/comment-detail/index.vue";
 import My from "../views/my/index.vue";
 import Setting from "../views/setting/index.vue";
 import Notfind from "../views/notfind/index.vue";
-import MyFavNews from '../views/my_fav_news/index.vue';
-import MyThumbs from '../views/my_thumbs/index.vue';
-import MySubscribe from '../views/my_subscribe/index.vue';
+import MyCollect from "../views/user-collect/index.vue";
+import MyNewsLike from "../views/user-news-likes/index.vue";
+import MyCommentsLike from "../views/user-comments-like/index.vue";
 
 const routes = [
   { path: "/:pathMatch(.*)", name: "404", component: Notfind },
@@ -64,17 +64,19 @@ const routes = [
     component: Setting,
   },
   {
-    path: "/my_fav_news",
-    name: "MyFavNews",
-    component: MyFavNews,
-  },{
-    path: "/my_subscribe",
-    name: "MySubscribe",
-    component: MySubscribe,
-  },{
-    path: "/my_thumbs",
-    name: "MyThumbs",
-    component: MyThumbs,
+    path: "/collect",
+    name: "collect",
+    component: MyCollect,
+  },
+  {
+    path: "/comments-like",
+    name: "commentsLike",
+    component: MyCommentsLike,
+  },
+  {
+    path: "/news-like",
+    name: "newsLike",
+    component: MyNewsLike,
   },
 ];
 
