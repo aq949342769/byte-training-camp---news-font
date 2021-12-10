@@ -1,7 +1,6 @@
 <template>
-  <!-- 加一个下拉列表组件 -->
   <template v-if="newsList[0]">
-    <template v-for="(news, index) in newsList" :key="index">
+    <template v-for="news in newsList" :key="news.id">
       <div @click="toDetail(news.id)">
         <template v-if="news.type === 1">
           <NewsText :news="news" />
