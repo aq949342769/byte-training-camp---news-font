@@ -56,8 +56,10 @@ export default {
 };
 </script>
 <style lang="less">
-#setting_uploader .van-uploader__wrapper{
+#setting_uploader {
   width: 100%;
-  justify-content: center;
+  .van-uploader__wrapper {
+    justify-content: center;
+  }
 }
 </style>
