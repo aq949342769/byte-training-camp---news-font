@@ -1,22 +1,28 @@
 <template>
   <div>
-    <van-nav-bar :left-text="'全部评论' + ' ( '+ comment_num +' )'"  left-arrow :fixed=true />
+    <van-nav-bar :left-text="'全部评论' + ' ('+ comment_num +')'"  left-arrow :fixed=true />
     <div class="container">
       <van-sticky :offset-top="45">
         <div class="stickyarea">
           <span>评论区</span>
           <div class="stickyarea_sort sort_options" >
-            <button type="button" class="Button Button--sort" >最新</button>
-            <button type="button" class="Button Button--sort" >最热</button>
+            <button type="button" class="Button Button--sort" >
+              最新
+              <van-icon class-prefix="my-icon" size="15.5px" name="sort"/>
+              </button>
+            
+            <button type="button" class="Button Button--sort" >
+              最热
+              <van-icon class-prefix="my-icon" size="15.5px" name="sort"/>
+              </button>
           </div>
         </div>
     </van-sticky>
     </div>
     
     <div class="comment_detail" >
-      <div class="comment-item comment-wrap">
         <!-- 展开的某一条评论详情  -->
-        <comment></comment>
+        <Content />
         <van-divider />
         <!-- 该评论的回复 -->
         <!-- <div 
@@ -24,20 +30,8 @@
           v-for="(replyitem, index) in replies_list"
           :key="index"> -->
 <!--         <div class="reply-box" >  
-          <reply></reply>
-          <reply></reply>
-          <reply></reply>
-          <reply></reply>
-          <reply></reply>
-          <reply></reply>
-          <reply></reply>
-          <reply></reply>
-          <reply></reply>
-          <reply></reply>
-          <reply></reply>
-          <reply></reply>
         </div> -->
-      </div>
+      
     </div>
     <!--发表评论输入框-->
     <div class="comment-send-lite">
@@ -50,27 +44,19 @@
 </template>
 
 <script>
-import comment from "../../components/comments/style2.vue";
-/* import reply from "../../components/comments/style2.vue";  */
-/* import { onMounted } from "vue"; */
+import Content from "../../components/comments/index";
 export default {
   components: {
-    comment,
-    /* reply */
+    Content
   },
+
+
   setup() {
-    let comment_num = 0;
-    let like_amout = 9;
-    let reply_amout = 10;
-    let unlike_amout = 0;
     let placeholder = '回复用户xxx（默认是所点开的评论者）';
     let reply_object = '';
-    
+  
+
     return{
-      comment_num,
-      like_amout,
-      reply_amout,
-      unlike_amout,
       placeholder,
       reply_object,
     };
@@ -79,11 +65,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
-/* @import '/src/assets/css/comment.less'; */
-
 body {
   height: 100vh;
-  width: 100vw;
 }
 .container {
   height: 20px;
@@ -91,18 +74,19 @@ body {
   padding: 0;
   .stickyarea {
   height: 30px;
+  font-size: 14px;
   background-color: white;
   display: flex;
+  justify-content: space-between;
   span {
     display: block;
-    flex: 3;
+    
     line-height: 30px;
-    margin-left: 15px;
+    margin-left: 12px;
   }
   .Button {
-    flex:1;
     border: none;
-    margin-right: 15px;
+    margin-right: 5px;
     background-color: transparent;
     &:hover, &:active{
       color: #005ce6;
@@ -112,7 +96,10 @@ body {
 }
 }
 .comment_detail {
-  margin-top: -45px;
+  margin-top: -40px;
+  .comment-wrap {
+    width: 100%;
+  }
 }
 
 

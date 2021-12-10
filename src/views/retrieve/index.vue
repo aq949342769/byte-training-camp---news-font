@@ -9,7 +9,7 @@
         <van-field v-model="userinfo.code" name="验证码"  placeholder="验证码" :error="unfillC" />
       </div>
       <div class="Code">
-        <canvas id="canvas" width="237" height="55" class="Code_area"></canvas>
+        <canvas id="canvas" width="237" height="80" class="Code_area"></canvas>
         <button type="button" class="Button Code_RefreshBtn Button--plain" @click="refreshCode">刷新验证码</button>
       </div>
       <van-button :style="{height:'30px',color:'black','border-radius': '10px','border-color':'transparent'}" size="large" round type="info" color="yellow" @click="sendEmail">确定</van-button>

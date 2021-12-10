@@ -1,17 +1,19 @@
 .comment-item,
 .reply-item {
-  font-size: 13px;
+  padding-right: 0;
+  display: flex;
 }
 .comment-item > div:first-child,
 .reply-item > div:first-child {
   display: flex;
 }
-.user_avata {
+.user_avatar {
   width: 23px;
   height: 23px;
   transform: translate(0px, 0px);
+  margin-right: 0;
 }
-.user_avata .avatar_img {
+.user_avatar .avatar_img {
   height: 100%;
   width: 100%;
   border: none;
@@ -21,45 +23,44 @@
   left: 50%;
 }
 .content {
-  width: 80vw;
-  margin-left: 25px;
-  margin-top: 16px;
+  width: 83%;
+  margin-left: 20px;
+  margin-right: 10px;
+  margin-top: 8px;
+  padding-right: 3px;
   letter-spacing: 1px;
 }
-.content .user {
-  width: 60vw;
-}
-.content .user a {
-  vertical-align: middle;
-}
-.content .text {
-  display: block;
-  margin-top: 12px;
-  line-height: 18px;
-  margin-bottom: 5px;
-}
-.content .showreply_btn {
-  color: #0000AA;
-  cursor: pointer;
-  background-color: transparent;
-  border: none;
+.content div:first-child {
+  height: 20px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
   padding: 0;
 }
-.toolbox {
-  float: right;
+.content .nickname {
+  line-height: 20px;
+  font-size: 13px;
 }
-.toolbox > span {
-  margin-left: 5px;
+.content .toolbox {
+  display: inline-block;
+  line-height: 20px;
+  font-size: 10px;
 }
-.info {
-  color: #D4D4D4;
-  padding-left: 10px;
-  margin-top: 15px;
-  margin-bottom: 10px;
-}
-.info > span {
-  margin-right: 20px;
-}
-.info > span > span {
+.content .toolbox span {
   margin-right: 5px;
+}
+.content .text {
+  width: 98%;
+  display: block;
+  margin-top: 10px;
+  line-height: 18px;
+  margin-bottom: 5px;
+  font-size: 13px;
+}
+.content .showReply {
+  color: #0000AA;
+  padding: 0;
+  font-size: 2px;
+  cursor: pointer;
+  letter-spacing: normal;
 }
