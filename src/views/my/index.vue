@@ -33,7 +33,7 @@
 <script>
 import { useStore } from "vuex";
 import { Dialog } from "vant";
-
+import themeChanger from '../../theme';
 export default {
   setup() {
     const store = useStore();
@@ -69,8 +69,8 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 93px;
-  margin-bottom: 93px;
+  margin-top: 80px;
+  margin-bottom: 80px;
   #pic {
     width: 100px;
     height: 100px;

@@ -26,9 +26,6 @@ export function updateUserSetting(data) {
   return request({
     method: "PUT",
     url: "/v1/user/setting",
-<<<<<<< HEAD
-    data: data
-=======
     data
   });
 }
@@ -41,6 +38,5 @@ export function uploadAvatar(data) {
     method: "POST",
     url: "/v1/user/avatar/upload",
     data
->>>>>>> d313812ea9ae82fa291bf7fc1de910f874c045e5
   });
 }
