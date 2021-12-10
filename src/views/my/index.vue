@@ -21,18 +21,20 @@
     <van-cell title="使用报告" is-link></van-cell>
   </van-cell-group>
   <van-cell-group class="center">
+    <van-cell title="点赞评论" is-link to="comments-like"></van-cell>
+    <van-cell title="点赞新闻" is-link to="news-like"></van-cell>
     <van-cell title="收藏内容" is-link to="collect"></van-cell>
-    <van-cell title="我的关注" is-link to="channels"></van-cell>
-    <van-cell title="我的点赞" is-link to="likes"></van-cell>
   </van-cell-group>
   <van-cell-group>
-    <van-cell title="退出账户" is-link id="exit"></van-cell>
+    <van-cell title="退出账户" is-link id="exit" @click="logout"></van-cell>
   </van-cell-group>
 </template>
 
 <script>
 import { computed } from "vue";
 import { useStore } from "vuex";
+import { Dialog } from "vant";
+
 const userHttpEffect = () => {
   const store = useStore();
   store.dispatch("user/Ac_getUserInfo");
@@ -40,10 +42,21 @@ const userHttpEffect = () => {
   const userInfo = computed(() => store.state.user.userInfo);
   return { userInfo };
 };
+
 export default {
   setup() {
     const { userInfo } = userHttpEffect();
-    return { userInfo };
+    const logout = () => {
+      Dialog.confirm({
+        title: "退出账号",
+        message: "退出账号后，部分功能无法正常使用",
+      })
+        .then(() => {
+          localStorage.clear();
+        })
+        .catch(() => {});
+    };
+    return { userInfo, logout };
   },
 };
 </script>
@@ -57,8 +70,8 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 100px;
-  margin-bottom: 100px;
+  margin-top: 93px;
+  margin-bottom: 93px;
   #pic {
     width: 50px;
     height: 50px;
