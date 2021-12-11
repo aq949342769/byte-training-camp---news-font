@@ -58,10 +58,12 @@ export default {
   setup() {
     const { userInfo, userSetting } = useHttpEffect();
     const store = useStore();
+    const fontSize = [{ name: "大" }, { name: "中" }, { name: "小" }];
     let darkTheme = ref(store.state.user.userSetting.darkTheme);
     let font_show = ref(false);
-    const fontSize = [{ name: "大" }, { name: "中" }, { name: "小" }];
     let font_text = ref(store.state.user.userSetting.fontSize);
+
+    //更换字体大小
     const font_select = (item) => {
       font_text.value = item.name;
       if (item.name === "大") {
@@ -73,8 +75,10 @@ export default {
       }
       Toast("您选择了 " + item.name + " 字体");
     };
+    //切换黑夜白天模式
     const themeObj = new themeChanger();
     const handleSwitch = () => themeObj._darkThemeSwitch();
+
     return {
       userInfo,
       userSetting,
