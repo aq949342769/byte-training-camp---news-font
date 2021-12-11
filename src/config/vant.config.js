@@ -18,10 +18,13 @@ import {
   Divider,
   Tabbar,
   TabbarItem,
+  Sticky, 
+  Form, 
   Dialog,
   ShareSheet,
   Uploader,
-  Form 
+  Popup 
+
 } from "vant";
 const components = [
   Button,
@@ -43,10 +46,13 @@ const components = [
   Divider,
   Tabbar,
   TabbarItem,
+  Sticky,  
+  Form, 
   Dialog,
   ShareSheet,
   Uploader,
-  Form 
+  Popup
+
 ];
 
 export function vant(app) {

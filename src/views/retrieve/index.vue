@@ -4,60 +4,39 @@
   <div class="container">
     <div class="RetrieveBox">
       <div class="RetrieveBox_title">找回密码</div>
-      <div class="SignFlow RetrieveBox_content">
-        <div class="">
-          <input type="text" class="SignFlow_account" placeholder="填写注册时的邮箱或账号"  >
-        </div>
-        <div class="">
-          <input type="password" class="SignFlow_code" placeholder="验证码"  >
-        </div>
+      <div class="SignFlow LoginBox_content">
+        <van-field v-model="userinfo.username" name="账号" placeholder="填写注册时的邮箱或账号" :error="unfillAccount"/>
+        <van-field v-model="userinfo.code" name="验证码"  placeholder="验证码" :error="unfillC" />
       </div>
-      
       <div class="Code">
-        <canvas id="canvas" width="237" height="55" class="Code_area"></canvas>
-        <button type="button" class="Button Code_RefreshBtn Button--plain">刷新验证码</button>
+        <canvas id="canvas" width="237" height="80" class="Code_area"></canvas>
+        <button type="button" class="Button Code_RefreshBtn Button--plain" @click="refreshCode">刷新验证码</button>
       </div>
-      <button type="submit" class="Button RetrieveBox_submitButton Button--yellow">确定</button>
+      <van-button :style="{height:'30px',color:'black','border-radius': '10px','border-color':'transparent'}" size="large" round type="info" color="yellow" @click="sendEmail">确定</van-button>
+
     </div>
   </div>
 </div>
 </template>
 
 <script>
+import { reactive } from '@vue/reactivity'
 export default {
   setup(){
+    const userinfo = reactive ({
+      username:'',
+      code: ''
+
+    });
+    return{ userinfo }
     
-  }
+  } 
 
 }
 </script>
 
 <style lang="less">
-.RetrieveBox{
-  &_title {
-    font-size: 22px;
-    font-weight: 600;
-    margin-bottom: 20px;
-  }
-  .SignFlow {
-    width: 75vw;
-    line-height: 23px;
-    font-size: 14px;
-    div {
-      border:1px solid gray;
-      border-radius: 8px;
-      margin-top: 15px;
-      &:hover{
-        border-color: blue;
-      }
-    }
-    input {
-      width: 90%;
-      border: none;
-      margin: 2px;
-      padding: 0 5px;
-    }
-  }
+@import "../../assets/css/SignFlow.less";
   .Code {
     margin-top: 20px;
     margin-bottom: 30px;
@@ -74,25 +53,8 @@ export default {
       font-size: 13px;
     }
   }
-  .Button--plain {
-    height: auto;
-    border: none;
-    line-height: inherit;
-    background-color: transparent;
-    text-decoration-line: underline;
-    &:hover{
-      color: #005ce6;
-    }
-  }
-}
-.Button {
-  display: inline-block;
-  border: 1px solid transparent;
-  border-radius: 10px;
-  text-align: center;
-  height: 30px;
-  cursor: pointer;
-}
+
+
 
 
 </style>>

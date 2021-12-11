@@ -19,6 +19,11 @@ export function request(config) {
       Authorization: token,
     },
   });
+
+  // 设置请求次数，请求的间隙
+instance.defaults.retry = 4;
+instance.defaults.retryDelay = 1000;
+
   // 2 拦截器
   // 请求拦截(前端给后端之前进行拦截)
   instance.interceptors.request.use(

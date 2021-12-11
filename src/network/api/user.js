@@ -4,7 +4,7 @@ export function login(username,password,method) {
   return request({
     url: `/v1/login`,
     method: method,
-    param: {
+    data: {
       username,
       password
     },
@@ -15,7 +15,7 @@ export function register(username,email,password,method) {
   return request({
     url: `/v1/register`,
     method: method,
-    param: {
+    data: {
       username,
       email,
       password
