@@ -52,7 +52,8 @@ export default {
   h5,
   h6,
   p,
-  form {
+  form,
+  li {
     margin: 10px 0 20px 0;
     line-height: 1.71;
     br {
