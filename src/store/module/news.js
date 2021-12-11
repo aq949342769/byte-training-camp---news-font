@@ -8,6 +8,7 @@ import {
   postNewsCateLikes,
   postNewsLikes,
   postNewsCollect,
+  getNewsLikeAndCollect,
 } from "../../network/api/news.js";
 
 export const news = {
@@ -57,6 +58,7 @@ export const news = {
     newsList: [],
     newsDetail: {
       is_likes: false,
+      is_favourites: false,
     },
   }),
   getters: {},
@@ -107,9 +109,20 @@ export const news = {
       state.newsDetail.like_count = state.newsDetail.is_likes
         ? state.newsDetail.like_count + 1
         : state.newsDetail.like_count - 1;
+      if (state.newsDetail.is_likes) {
+        Toast.success("点赞 ❥(^_-)");
+      } else {
+        Toast("取消点赞 ε=(´ο｀*)))");
+      }
     },
     changeNewsCollect(state, newData) {
       state.newsDetail.is_favourites = newData;
+    },
+    changeNewsLikeAndCollect(state, likesAndCollect) {
+      if (likesAndCollect) {
+        state.newsDetail.is_likes = likesAndCollect.is_likes;
+        state.newsDetail.is_favourites = likesAndCollect.is_favourites;
+      }
     },
   },
   actions: {
@@ -158,7 +171,7 @@ export const news = {
     async getNewsDetailList(ctx, id) {
       await getNewsDetailList(id)
         .then((res) => {
-          ctx.commit("changeNewsDetail", res.data);
+          ctx.commit("changeNewsDetail", res.data ? res.data : {});
         })
         .catch((err) => {
           console.log(err);
@@ -214,6 +227,16 @@ export const news = {
         })
         .catch((err) => {
           console.log(err);
+        });
+    },
+    // 获取新闻点赞收藏信息
+    async getNewsLikeAndCollect(ctx, id) {
+      await getNewsLikeAndCollect(id)
+        .then((res) => {
+          ctx.commit("changeNewsLikeAndCollect", res.data ? res.data : {});
+        })
+        .catch((err) => {
+          Toast(err);
         });
     },
   },

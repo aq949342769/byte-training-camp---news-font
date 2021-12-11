@@ -32,11 +32,7 @@ const useLikesEffect = (props) => {
   const toGood = async () => {
     const method = is_likes.value ? "delete" : "post";
     await store.dispatch("news/postNewsLikes", [props.newsDetail.id, method]);
-    if (is_likes.value) {
-      Toast.success("点赞 ❥(^_-)");
-    } else {
-      Toast("取消点赞 ε=(´ο｀*)))");
-    }
+    
   };
   return { is_likes, toGood };
 };
@@ -57,8 +53,8 @@ const useCollectEffect = (props) => {
 const useCommentEffect = (props) => {
   const store = useStore();
   const comment = ref("");
-  const addComment = () => {
-    store.dispatch("news/addComment", {
+  const addComment = async() => {
+  await  store.dispatch("news/addComment", {
       news_id: props.newsDetail.id,
       reply_comment_id: null,
       content: comment.value,

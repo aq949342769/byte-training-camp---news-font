@@ -47,3 +47,10 @@ export function postNewsCollect(id, method) {
     method: method,
   });
 }
+
+// 获取新闻点赞收藏信息
+export function getNewsLikeAndCollect(id) {
+  return request({
+    url: `/v1/news/${id}/info`,
+  });
+}
