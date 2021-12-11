@@ -15,6 +15,7 @@
 import { ref } from "vue";
 import { updateUserInfo } from "../../../network/api/my";
 import { useStore } from "vuex";
+import { Toast } from "vant";
 export default {
   name: "SettingCell",
   props: {
@@ -36,17 +37,23 @@ export default {
     };
     const changeInfo = (action) => {
       if (action === "confirm") {
-        //缺少验证逻辑，以后补
-        updateUserInfo({ nick_name, email })
-          .then(() => {
-            store.dispatch("Ac_getUserInfo");
-            return true;
-          })
-          .catch((err) => {
-            console.log(err);
-            return true;
-          });
-        return true;
+        //这里的逻辑校验还需要商量一下
+        if (nick_name.value === "") {
+          Toast("请补全昵称");
+        } else if (email.value === "") {
+          Toast("请补全邮箱");
+        } else {
+          updateUserInfo({ nick_name, email })
+            .then(() => {
+              store.dispatch("Ac_getUserInfo");
+              return true;
+            })
+            .catch((err) => {
+              console.log(err);
+              return true;
+            });
+          return true;
+        }
       } else {
         return true;
       }

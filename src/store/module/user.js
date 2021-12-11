@@ -33,7 +33,8 @@ export const user = {
       emial: "",
     },
     userSetting: {
-      darkTheme: false
+      darkTheme: false, //默认白天模式
+      fontSize: "小" //默认字体大小
     },
     collectNewsList: [],
     likeNewsList: [],
@@ -67,8 +68,8 @@ export const user = {
       state.email = email;
       state.avatar = avatar;
     },
-    logout(state){
-      state.isLogin = false 
+    logout(state) {
+      state.isLogin = false
     },
     Mu_getUserInfo(state, userInfo) {
       state.userInfo = userInfo;
