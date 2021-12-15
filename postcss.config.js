@@ -1,7 +1,7 @@
 module.exports = {
     plugins: {
       "postcss-pxtorem": {
-        rootValue: 16, // 设计稿宽度的1/10
+        rootValue: 12, // 设计稿宽度的1/10
         unitPrecision: 5, //小数位
         minPixelValue: 1, //转换的最小单位
         selectorBlackList: ["van-"], //忽略的样式, 正则
