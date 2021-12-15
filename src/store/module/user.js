@@ -29,13 +29,12 @@ export const user = {
     email: "",
     avatar: "",
     userInfo: {
-      nick_name: "",
-      emial: "",
+      nick_name: " ",
+      emial: " ",
     },
-    userSetting: {
-      darkTheme: false, //默认白天模式
-      fontSize: "小" //默认字体大小
-    },
+    darkTheme: false, //默认白天模式
+    fontSize: "小", //默认字体大小
+    userSetting: {},
     collectNewsList: [],
     likeNewsList: [],
   }),

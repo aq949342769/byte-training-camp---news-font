@@ -34,15 +34,16 @@
 import { useStore } from "vuex";
 import { Dialog } from "vant";
 import themeChanger from "../../theme";
+import { reactive, ref } from "vue";
 export default {
   setup() {
     const store = useStore();
-    store.dispatch("user/Ac_getUserInfo");
-    store.dispatch("user/Ac_getUserSetting");
-    const userInfo = store.state.user.userInfo;
-    const darkTheme = store.state.user.userSetting.darkTheme;
+    // store.dispatch("user/Ac_getUserInfo");
+    // store.dispatch("user/Ac_getUserSetting");
+    const userInfo = reactive(store.state.user.userInfo);
+    const darkTheme = ref(store.state.user.darkTheme);
     const themeChange = new themeChanger();
-    if (darkTheme) {
+    if (darkTheme.value) {
       themeChange._addDarkTheme();
     }
     const logout = () => {

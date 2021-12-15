@@ -48,21 +48,16 @@ import { useStore } from "vuex";
 import { Toast } from "vant";
 import SettingCell from "./components/SettingCell.vue";
 import themeChanger from "../../theme";
-const useHttpEffect = () => {
-  const store = useStore();
-  const userInfo = reactive(store.state.user.userInfo);
-  const userSetting = reactive(store.state.user.userSetting);
-  return { userInfo, userSetting };
-};
+
 export default {
   setup() {
-    const { userInfo, userSetting } = useHttpEffect();
     const store = useStore();
+    let userInfo = reactive(store.state.user.userInfo);
+    let userSetting = reactive(store.state.user.userSetting);
     const fontSize = [{ name: "大" }, { name: "中" }, { name: "小" }];
-    let darkTheme = ref(store.state.user.userSetting.darkTheme);
+    let darkTheme = ref(store.state.user.darkTheme);
     let font_show = ref(false);
-    let font_text = ref(store.state.user.userSetting.fontSize);
-
+    let font_text = ref(store.state.user.fontSize);
     //更换字体大小
     const font_select = (item) => {
       font_text.value = item.name;
