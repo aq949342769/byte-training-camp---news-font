@@ -46,7 +46,6 @@
 import { reactive, ref } from "vue";
 import { useStore } from "vuex";
 import { Toast } from "vant";
-import { updateUserInfo, uploadAvatar } from "../../network/api/my";
 import SettingCell from "./components/SettingCell.vue";
 import themeChanger from "../../theme";
 const useHttpEffect = () => {
@@ -59,15 +58,27 @@ export default {
   setup() {
     const { userInfo, userSetting } = useHttpEffect();
     const store = useStore();
+    const fontSize = [{ name: "大" }, { name: "中" }, { name: "小" }];
     let darkTheme = ref(store.state.user.userSetting.darkTheme);
     let font_show = ref(false);
-    const fontSize = [{ name: "大" }, { name: "中" }, { name: "小" }];
-    let font_text = ref("中");
+    let font_text = ref(store.state.user.userSetting.fontSize);
+
+    //更换字体大小
     const font_select = (item) => {
       font_text.value = item.name;
+      if (item.name === "大") {
+        document.querySelector("html").style.fontSize = "30px";
+      } else if (item.name === "中") {
+        document.querySelector("html").style.fontSize = "16px";
+      } else {
+        document.querySelector("html").style.fontSize = "10px";
+      }
       Toast("您选择了 " + item.name + " 字体");
     };
+    //切换黑夜白天模式
     const themeObj = new themeChanger();
+    const handleSwitch = () => themeObj._darkThemeSwitch();
+
     return {
       userInfo,
       userSetting,
@@ -76,31 +87,10 @@ export default {
       font_select,
       font_text,
       darkTheme,
-      handleSwitch() {
-        themeObj._darkThemeSwitch();
-        console.log(darkTheme);
-      },
+      handleSwitch,
     };
   },
   components: { SettingCell },
-  methods: {
-    handleClick() {
-      updateUserInfo({ nick_name: "testname" })
-        .then((result) => {
-          console.log(result);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      uploadAvatar({ file: "/Users/xiaoyidao/Desktop" })
-        .then((result) => {
-          console.log(result);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-  },
 };
 </script>
 

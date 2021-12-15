@@ -33,7 +33,7 @@
 <script>
 import { useStore } from "vuex";
 import { Dialog } from "vant";
-import themeChanger from '../../theme';
+import themeChanger from "../../theme";
 export default {
   setup() {
     const store = useStore();
